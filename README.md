@@ -33,3 +33,5 @@ The changes are kept on a separate branch, so they will not appear on the reposi
 After the changes are on `main`, open the repository's **Settings → Pages** page. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/(root)`, and save. GitHub will show the website address when it is ready. Open a plant page on that live website, scan its QR code with a phone to check it, then save or print the code for the seed display.
 
 Each QR code contains that plant's own page address, so it remains easy to label and share. The QR image is created by an online QR service and needs an internet connection.
+
+The center logo files are in `assets/`. The dark-text image is used in light mode, and the white-text image is used in dark mode. The featured deck starts from a different plant when the page loads, then follows the plant list in order; hold and drag to move across several cards.

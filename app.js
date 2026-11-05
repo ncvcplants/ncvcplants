@@ -141,6 +141,15 @@ function applyPreferences() {
     button.textContent = text(dark ? 'lightMode' : 'darkMode');
     button.setAttribute('aria-pressed', String(dark));
   });
+  document.querySelectorAll('[data-site-logo]').forEach(image => {
+    image.src = document.documentElement.dataset.theme === 'dark'
+      ? image.dataset.logoDark
+      : image.dataset.logoLight;
+    image.alt = isArabic
+      ? 'المركز الوطني لتنمية الغطاء النباتي ومكافحة التصحر'
+      : 'National Center for Vegetation Cover Development and Combating Desertification';
+    image.parentElement.setAttribute('aria-label', image.alt);
+  });
   document.querySelectorAll('.brand[aria-label]').forEach(link => {
     link.setAttribute('aria-label', isArabic ? 'الصفحة الرئيسية - Seed & Soil' : 'Seed and Soil home');
   });
@@ -166,6 +175,7 @@ const swipeStack = document.querySelector('#swipe-stack');
 const swipeStage = document.querySelector('#swipe-stage');
 const swipeSection = document.querySelector('.swipe-section');
 let deckIndex = 0;
+let deckInitialized = false;
 let visiblePlants = [];
 let suppressSwipeClick = false;
 
@@ -178,6 +188,8 @@ function renderPlants() {
   if (!grid || !swipeStack) return;
   window.clearTimeout(deckAnimationTimer);
   deckAdvancing = false;
+  swipeQueue = [];
+  pointerStart = null;
   const search = document.querySelector('#plant-search');
   const count = document.querySelector('#collection-count');
   const empty = document.querySelector('#empty-state');
@@ -186,6 +198,11 @@ function renderPlants() {
     const { localized } = plantCardDetails(plant);
     return `${plant.name} ${localized.name} ${plant.commonNames}`.toLocaleLowerCase(language).includes(query);
   });
+  if (!deckInitialized && visiblePlants.length) {
+    // Choose a different starting plant on each page load; all following cards stay in list order.
+    deckIndex = Math.floor(Math.random() * visiblePlants.length);
+    deckInitialized = true;
+  }
   deckIndex = visiblePlants.length ? deckIndex % visiblePlants.length : 0;
   const formattedCount = language === 'ar' ? visiblePlants.length.toLocaleString('ar') : visiblePlants.length;
   const countNoun = language === 'ar'
@@ -258,81 +275,139 @@ function renderDeck() {
 
 let deckAnimationTimer;
 let deckAdvancing = false;
+let swipeQueue = [];
+let pointerStart = null;
+
+function finishDeckSwipe() {
+  const direction = swipeQueue.shift();
+  const card = swipeStack.querySelector('.is-active');
+  if (!card || direction === undefined) return;
+  deckAdvancing = true;
+  card.classList.remove('is-dragging');
+  card.classList.add(direction > 0 ? 'is-swiping-left' : 'is-swiping-right');
+  window.clearTimeout(deckAnimationTimer);
+  const animationDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 270;
+  deckAnimationTimer = window.setTimeout(() => {
+    deckIndex = (deckIndex + direction + visiblePlants.length) % visiblePlants.length;
+    deckAdvancing = false;
+    renderDeck();
+    if (pointerStart) {
+      const remainder = pointerStart.latestDx - pointerStart.processedDistance;
+      const nextCard = swipeStack.querySelector('.is-active');
+      if (nextCard && remainder) {
+        nextCard.classList.add('is-dragging');
+        nextCard.style.setProperty('--swipe-x', `${remainder}px`);
+        nextCard.style.setProperty('--swipe-rotation', `${remainder * 0.055}deg`);
+      }
+    }
+    if (swipeQueue.length) finishDeckSwipe();
+  }, animationDuration);
+}
+
 function advanceDeck(direction) {
   if (visiblePlants.length < 2) return;
-  if (deckAdvancing) return;
-  const card = swipeStack.querySelector('.is-active');
-  if (card) {
-    deckAdvancing = true;
-    card.classList.add(direction > 0 ? 'is-swiping-left' : 'is-swiping-right');
-    window.clearTimeout(deckAnimationTimer);
-    // Let the outgoing card finish its transition before drawing the next one.
-    deckAnimationTimer = window.setTimeout(() => {
-      deckIndex = (deckIndex + direction + visiblePlants.length) % visiblePlants.length;
-      deckAdvancing = false;
-      renderDeck();
-    }, 250);
-    return;
+  swipeQueue.push(direction);
+  if (!deckAdvancing) finishDeckSwipe();
+}
+
+function queuePointerSwipes() {
+  const threshold = 90;
+  let remainder = pointerStart.latestDx - pointerStart.processedDistance;
+  while (Math.abs(remainder) >= threshold) {
+    const direction = remainder < 0 ? 1 : -1;
+    pointerStart.processedDistance += Math.sign(remainder) * threshold;
+    swipeQueue.push(direction);
+    pointerStart.dragged = true;
+    remainder = pointerStart.latestDx - pointerStart.processedDistance;
   }
-  deckIndex = (deckIndex + direction + visiblePlants.length) % visiblePlants.length;
-  renderDeck();
+  if (!deckAdvancing && swipeQueue.length) finishDeckSwipe();
+}
+
+function updateDraggedCard() {
+  if (!pointerStart || deckAdvancing) return;
+  const card = swipeStack.querySelector('.is-active');
+  const remainder = pointerStart.latestDx - pointerStart.processedDistance;
+  if (!card) return;
+  card.classList.toggle('is-dragging', pointerStart.dragged);
+  card.style.setProperty('--swipe-x', `${remainder}px`);
+  card.style.setProperty('--swipe-rotation', `${remainder * 0.055}deg`);
+}
+
+/*
+ * Swipe a stack continuously: pointer capture stays on the stage while each
+ * card animates away, so one long drag can advance through several plants.
+ */
+function handlePointerDown(event) {
+  const card = event.target.closest('[data-swipe-card]');
+  if (!card || event.button > 0 || !event.isPrimary) return;
+  pointerStart = {
+    x: event.clientX,
+    y: event.clientY,
+    latestDx: 0,
+    processedDistance: 0,
+    dragged: false,
+    pointerId: event.pointerId
+  };
+  swipeStage.setPointerCapture(event.pointerId);
+}
+
+function handlePointerMove(event) {
+  if (!pointerStart || pointerStart.pointerId !== event.pointerId) return;
+  pointerStart.latestDx = event.clientX - pointerStart.x;
+  const dy = event.clientY - pointerStart.y;
+  if (Math.abs(pointerStart.latestDx) > Math.abs(dy) && Math.abs(pointerStart.latestDx) > 8) {
+    pointerStart.dragged = true;
+    queuePointerSwipes();
+    updateDraggedCard();
+  }
+}
+
+function handlePointerEnd(event) {
+  if (!pointerStart || pointerStart.pointerId !== event.pointerId) return;
+  pointerStart.latestDx = event.clientX - pointerStart.x;
+  const dy = event.clientY - pointerStart.y;
+  if (Math.abs(pointerStart.latestDx) > Math.abs(dy) && Math.abs(pointerStart.latestDx) > 8) {
+    pointerStart.dragged = true;
+    queuePointerSwipes();
+  }
+  const dragged = pointerStart.dragged;
+  const tappedCard = swipeStack.querySelector('.is-active');
+  pointerStart = null;
+  const card = swipeStack.querySelector('.is-active');
+  if (card && !deckAdvancing) {
+    card.classList.remove('is-dragging');
+    card.style.removeProperty('--swipe-x');
+    card.style.removeProperty('--swipe-rotation');
+  }
+  if (dragged) {
+    suppressSwipeClick = true;
+    window.setTimeout(() => { suppressSwipeClick = false; }, 300);
+  } else if (tappedCard) {
+    suppressSwipeClick = true;
+    window.location.href = tappedCard.href;
+  }
+}
+
+function handlePointerCancel(event) {
+  if (!pointerStart || pointerStart.pointerId !== event.pointerId) return;
+  const card = swipeStack.querySelector('.is-active');
+  if (card && !deckAdvancing) {
+    card.classList.remove('is-dragging');
+    card.style.removeProperty('--swipe-x');
+    card.style.removeProperty('--swipe-rotation');
+  }
+  pointerStart = null;
 }
 
 if (grid && swipeStack) {
   document.querySelector('#plant-search').addEventListener('input', renderPlants);
   document.querySelector('#swipe-prev').addEventListener('click', () => advanceDeck(-1));
   document.querySelector('#swipe-next').addEventListener('click', () => advanceDeck(1));
-
-  let pointerStart = null;
-  swipeStage.addEventListener('pointerdown', event => {
-    const card = event.target.closest('[data-swipe-card]');
-    if (!card || event.button > 0) return;
-    pointerStart = { x: event.clientX, y: event.clientY, card };
-    card.setPointerCapture(event.pointerId);
-  });
-  swipeStage.addEventListener('pointermove', event => {
-    if (!pointerStart) return;
-    const dx = event.clientX - pointerStart.x;
-    const dy = event.clientY - pointerStart.y;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
-      pointerStart.card.classList.add('is-dragging');
-      pointerStart.card.style.setProperty('--swipe-x', `${dx}px`);
-      pointerStart.card.style.setProperty('--swipe-rotation', `${dx * 0.055}deg`);
-    }
-  });
-  function finishSwipe(event) {
-    if (!pointerStart) return;
-    const dx = event.clientX - pointerStart.x;
-    const dy = event.clientY - pointerStart.y;
-    const card = pointerStart.card;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 90) {
-      suppressSwipeClick = true;
-      card.classList.remove('is-dragging');
-      card.classList.add(dx < 0 ? 'is-swiping-left' : 'is-swiping-right');
-      deckAdvancing = true;
-      window.clearTimeout(deckAnimationTimer);
-      const direction = dx < 0 ? 1 : -1;
-      deckAnimationTimer = window.setTimeout(() => {
-        deckIndex = (deckIndex + direction + visiblePlants.length) % visiblePlants.length;
-        deckAdvancing = false;
-        renderDeck();
-      }, 250);
-      window.setTimeout(() => { suppressSwipeClick = false; }, 250);
-    } else {
-      card.classList.remove('is-dragging');
-      card.style.removeProperty('--swipe-x');
-      card.style.removeProperty('--swipe-rotation');
-    }
-    pointerStart = null;
-  }
-  swipeStage.addEventListener('pointerup', finishSwipe);
-  swipeStage.addEventListener('pointercancel', event => {
-    if (!pointerStart) return;
-    pointerStart.card.classList.remove('is-dragging');
-    pointerStart.card.style.removeProperty('--swipe-x');
-    pointerStart.card.style.removeProperty('--swipe-rotation');
-    pointerStart = null;
-  });
+  swipeStage.addEventListener('pointerdown', handlePointerDown);
+  swipeStage.addEventListener('pointermove', handlePointerMove);
+  swipeStage.addEventListener('pointerup', handlePointerEnd);
+  swipeStage.addEventListener('pointercancel', handlePointerCancel);
+  swipeStage.addEventListener('lostpointercapture', handlePointerCancel);
   swipeStage.addEventListener('click', event => {
     if (!suppressSwipeClick) return;
     event.preventDefault();
