@@ -1,8 +1,8 @@
 # Seed & Soil
 
-A small, no-install plant and seed showcase. The homepage has one interactive wheel of sample plants, with search and type filters. Select a plant to open its own page with a photo gallery, growing notes, and a QR code.
+A small, no-install plant and seed showcase. The homepage has swipeable plant cards above the complete plant-card list, with search and type filters. Select a card to open its own page with a photo gallery, growing notes, and a QR code.
 
-The site opens in Arabic and can be switched to English, including a right-to-left Arabic layout. Use the dark-mode button to change the colors. The homepage uses one interactive plant wheel: click anywhere on a plant to open its page, use the arrow buttons or keyboard arrows to rotate the wheel, or swipe/drag across the open space.
+The site opens in Arabic and can be switched to English, including a right-to-left Arabic layout. Use the dark-mode button to change the colors. On the homepage, swipe through featured plant cards, then browse the full collection in a regular card list. Select a swipe card or a card in the list to open that plant's page.
 
 ## See the site
 

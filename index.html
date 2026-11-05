@@ -33,12 +33,26 @@
           <button class="filter-chip" type="button" data-filter="houseplant" aria-pressed="false" data-i18n="houseplantFilter">Houseplants</button>
         </div>
       </div>
-      <div class="wheel-controls" role="group" aria-label="Turn the plant wheel" data-i18n-aria="wheelControls">
-        <button class="wheel-button" type="button" id="wheel-prev" aria-label="Previous plant" data-i18n-aria="previousPlant">←</button>
-        <span class="wheel-position" id="wheel-position" aria-live="polite"></span>
-        <button class="wheel-button" type="button" id="wheel-next" aria-label="Next plant" data-i18n-aria="nextPlant">→</button>
-      </div>
-      <div class="plant-grid plant-wheel" id="plant-grid" role="region" aria-label="Interactive plant wheel" data-i18n-aria="wheelLabel" tabindex="0"></div>
+      <section class="swipe-section" aria-labelledby="swipe-title">
+        <div class="swipe-heading">
+          <h2 id="swipe-title" data-i18n="swipeHeading">Discover plants</h2>
+          <p data-i18n="swipeHint">Swipe left or right to explore</p>
+        </div>
+        <div class="swipe-stage" id="swipe-stage">
+          <div class="swipe-stack" id="swipe-stack" aria-live="polite"></div>
+        </div>
+        <div class="swipe-controls" role="group" aria-label="Browse plants" data-i18n-aria="browsePlants">
+          <button class="swipe-button" type="button" id="swipe-prev" aria-label="Previous plant" data-i18n-aria="previousPlant">←</button>
+          <span class="swipe-position" id="swipe-position" aria-live="polite"></span>
+          <button class="swipe-button" type="button" id="swipe-next" aria-label="Next plant" data-i18n-aria="nextPlant">→</button>
+        </div>
+      </section>
+      <section class="catalog-section" aria-labelledby="catalog-title">
+        <div class="catalog-heading">
+          <h2 id="catalog-title" data-i18n="catalogHeading">All plants</h2>
+        </div>
+        <div class="plant-grid" id="plant-grid" aria-live="polite"></div>
+      </section>
       <p class="empty-state" id="empty-state" hidden data-i18n="emptyState">No plants found. Try another search.</p>
     </section>
   </main>

@@ -48,10 +48,11 @@ const plants = [
 
 const translations = {
   en: {
-    collectionTitle: 'Plant collection', wheelHub: 'SEED LIBRARY', siteSettings: 'Site settings', searchLabel: 'Search plants', searchPlaceholder: 'Search plants',
+    collectionTitle: 'Plant collection', catalogHeading: 'All plants', swipeHeading: 'Discover plants', swipeHint: 'Swipe left or right to explore',
+    siteSettings: 'Site settings', searchLabel: 'Search plants', searchPlaceholder: 'Search plants',
     filterLabel: 'Filter plants by type', allFilter: 'All', flowerFilter: 'Flowers', herbFilter: 'Herbs',
-    houseplantFilter: 'Houseplants', wheelControls: 'Turn the plant wheel', wheelLabel: 'Interactive plant wheel',
-    previousPlant: 'Previous plant', nextPlant: 'Next plant', wheelPosition: 'Plant {current} of {total}: {name}',
+    houseplantFilter: 'Houseplants', browsePlants: 'Browse plants', previousPlant: 'Previous plant',
+    nextPlant: 'Next plant', swipePosition: 'Plant {current} of {total}: {name}',
     emptyState: 'No plants found. Try another search.', backToTop: 'Back to top ↑', darkMode: 'Dark mode',
     lightMode: 'Light mode', switchLanguage: 'العربية', plantCountOne: 'plant', plantCountMany: 'plants',
     inCollection: 'in the collection', viewPlant: 'View', seed: 'SEED',
@@ -67,10 +68,11 @@ const translations = {
     colorViolet: 'Soft violet', colorDeepGreen: 'Deep green'
   },
   ar: {
-    collectionTitle: 'مجموعة النباتات', wheelHub: 'مجموعة النباتات', siteSettings: 'إعدادات الموقع', searchLabel: 'ابحث عن نبات', searchPlaceholder: 'ابحث عن نبات',
+    collectionTitle: 'مجموعة النباتات', catalogHeading: 'كل النباتات', swipeHeading: 'اكتشف النباتات', swipeHint: 'اسحب يمينًا أو يسارًا لاستكشاف النباتات',
+    siteSettings: 'إعدادات الموقع', searchLabel: 'ابحث عن نبات', searchPlaceholder: 'ابحث عن نبات',
     filterLabel: 'تصفية النباتات حسب النوع', allFilter: 'الكل', flowerFilter: 'أزهار', herbFilter: 'أعشاب',
-    houseplantFilter: 'نباتات منزلية', wheelControls: 'تدوير عجلة النباتات', wheelLabel: 'عجلة تفاعلية للنباتات',
-    previousPlant: 'النبات السابق', nextPlant: 'النبات التالي', wheelPosition: 'النبات {current} من {total}: {name}',
+    houseplantFilter: 'نباتات منزلية', browsePlants: 'تصفح النباتات', previousPlant: 'النبات السابق',
+    nextPlant: 'النبات التالي', swipePosition: 'النبات {current} من {total}: {name}',
     emptyState: 'لم يتم العثور على نباتات. جرّب بحثًا آخر.', backToTop: 'العودة إلى الأعلى ↑', darkMode: 'الوضع الداكن',
     lightMode: 'الوضع الفاتح', switchLanguage: 'English', plantCountOne: 'نبات', plantCountMany: 'نباتات',
     inCollection: 'في المجموعة', viewPlant: 'عرض', seed: 'بذرة',
@@ -193,95 +195,109 @@ document.querySelectorAll('[data-theme-button]').forEach(button => button.addEve
 }));
 
 const grid = document.querySelector('#plant-grid');
+const swipeStack = document.querySelector('#swipe-stack');
+const swipeStage = document.querySelector('#swipe-stage');
+const swipeSection = document.querySelector('.swipe-section');
 let selectedFilter = 'all';
-let wheelOffset = 0;
+let deckIndex = 0;
 let visiblePlants = [];
-function updateWheelRadius() {
-  if (!grid) return;
-  const widthRatio = window.matchMedia('(max-width: 600px)').matches ? 0.26 : 0.32;
-  const radius = Math.min(grid.clientWidth * widthRatio, 245);
-  grid.style.setProperty('--wheel-radius', visiblePlants.length < 2 ? '0px' : `${-radius}px`);
+let suppressSwipeClick = false;
+
+function plantCardDetails(plant) {
+  const localized = plantText(plant);
+  const season = language === 'ar' ? text(plant.season === 'Summer' ? 'seasonSummer' : plant.season === 'Year-round' ? 'seasonYearRound' : 'seasonWarm') : plant.season;
+  const color = language === 'ar' ? text(({ 'Golden yellow': 'colorYellow', 'Fresh green': 'colorGreen', 'Soft violet': 'colorViolet', 'Deep green': 'colorDeepGreen' })[plant.color]) : plant.color;
+  const category = language === 'ar' ? text(({ flower: 'categoryFlower', herb: 'categoryHerb', houseplant: 'categoryHouseplant' })[plant.category]) : plant.categoryLabel;
+  return { localized, season, color, category };
 }
 
 function renderPlants() {
-  if (!grid) return;
+  if (!grid || !swipeStack) return;
   const search = document.querySelector('#plant-search');
   const count = document.querySelector('#collection-count');
   const empty = document.querySelector('#empty-state');
   const query = search.value.trim().toLocaleLowerCase(language);
   visiblePlants = plants.filter(plant => {
-    const localized = plantText(plant);
+    const { localized, category } = plantCardDetails(plant);
     return (selectedFilter === 'all' || plant.category === selectedFilter) &&
-      `${plant.name} ${localized.name} ${plant.latin} ${localized.categoryLabel || text(`category${plant.category[0].toUpperCase()}${plant.category.slice(1)}`)}`.toLocaleLowerCase(language).includes(query);
+      `${plant.name} ${localized.name} ${plant.latin} ${category}`.toLocaleLowerCase(language).includes(query);
   });
+  deckIndex = visiblePlants.length ? deckIndex % visiblePlants.length : 0;
   const formattedCount = language === 'ar' ? visiblePlants.length.toLocaleString('ar') : visiblePlants.length;
   const countNoun = language === 'ar'
     ? visiblePlants.length === 1 ? 'نبات' : text('plantCountMany')
     : visiblePlants.length === 1 ? text('plantCountOne') : text('plantCountMany');
   count.textContent = `${formattedCount} ${countNoun} ${text('inCollection')}`;
   empty.hidden = visiblePlants.length > 0;
-  grid.classList.toggle('has-plants', visiblePlants.length > 0);
-  document.querySelectorAll('.wheel-button').forEach(button => {
+  swipeSection.hidden = visiblePlants.length === 0;
+  grid.hidden = visiblePlants.length === 0;
+  document.querySelectorAll('.swipe-button').forEach(button => {
     button.disabled = visiblePlants.length < 2;
   });
-  if (visiblePlants.length) wheelOffset %= visiblePlants.length;
-  updateWheelRadius();
-  grid.dataset.wheelLabel = text('wheelHub');
-  const wheelPosition = document.querySelector('#wheel-position');
-  if (wheelPosition && visiblePlants.length) {
-    const currentPlant = plantText(visiblePlants[wheelOffset]);
-    const current = language === 'ar' ? (wheelOffset + 1).toLocaleString('ar') : wheelOffset + 1;
-    const total = language === 'ar' ? visiblePlants.length.toLocaleString('ar') : visiblePlants.length;
-    wheelPosition.textContent = text('wheelPosition')
-      .replace('{current}', current)
-      .replace('{total}', total)
-      .replace('{name}', currentPlant.name);
-  } else if (wheelPosition) {
-    wheelPosition.textContent = text('emptyState');
-  }
-  grid.innerHTML = visiblePlants.map((plant, index) => {
-    const localized = plantText(plant);
-    const season = language === 'ar' ? text(plant.season === 'Summer' ? 'seasonSummer' : plant.season === 'Year-round' ? 'seasonYearRound' : 'seasonWarm') : plant.season;
-    const color = language === 'ar' ? text(({ 'Golden yellow': 'colorYellow', 'Fresh green': 'colorGreen', 'Soft violet': 'colorViolet', 'Deep green': 'colorDeepGreen' })[plant.color]) : plant.color;
-    const category = language === 'ar' ? text(({ flower: 'categoryFlower', herb: 'categoryHerb', houseplant: 'categoryHouseplant' })[plant.category]) : plant.categoryLabel;
-    const angle = visiblePlants.length
-      ? index * (360 / visiblePlants.length) - wheelOffset * (360 / visiblePlants.length)
-      : 0;
+  renderDeck();
+  grid.innerHTML = visiblePlants.map(plant => {
+    const { localized, season, color, category } = plantCardDetails(plant);
     return `
-      <article class="plant-card" style="--wheel-angle:${angle}deg;--wheel-counter-angle:${-angle}deg">
-        <a class="plant-card-link" href="plants/${plant.slug}/" aria-label="${text('viewPlant')} ${localized.name}">
-        <span class="card-image-link">
+      <article class="plant-card">
+        <a class="card-image-link" href="plants/${plant.slug}/" aria-label="${text('viewPlant')} ${localized.name}">
           <img class="card-image" src="${photoUrl(plant.image)}" alt="${localized.name}" loading="lazy" style="object-position:${plant.imagePosition}">
           <span class="card-number">${text('seed')} 0${plants.indexOf(plant) + 1}</span>
-        </span>
+        </a>
         <div class="card-content">
           <p class="card-category">${category}</p>
-          <h2 class="card-title">${localized.name}</h2>
+          <h2 class="card-title"><a href="plants/${plant.slug}/">${localized.name}</a></h2>
           <p class="card-latin">${plant.latin}</p>
-          <div class="card-bottom"><span>${season} · ${color}</span><span class="card-link" aria-hidden="true">↗</span></div>
+          <div class="card-bottom"><span>${season} · ${color}</span><a class="card-link" href="plants/${plant.slug}/" aria-label="${text('viewPlant')} ${localized.name}">↗</a></div>
         </div>
-        </a>
       </article>`;
   }).join('');
 }
-function updateWheelPositions() {
-  if (!grid || !visiblePlants.length) return;
-  const step = 360 / visiblePlants.length;
-  grid.querySelectorAll('.plant-card').forEach((card, index) => {
-    const angle = index * step - wheelOffset * step;
-    card.style.setProperty('--wheel-angle', `${angle}deg`);
-    card.style.setProperty('--wheel-counter-angle', `${-angle}deg`);
-  });
-  const currentPlant = plantText(visiblePlants[wheelOffset]);
-  const current = language === 'ar' ? (wheelOffset + 1).toLocaleString('ar') : wheelOffset + 1;
-  const total = language === 'ar' ? visiblePlants.length.toLocaleString('ar') : visiblePlants.length;
-  document.querySelector('#wheel-position').textContent = text('wheelPosition')
+
+function renderDeck() {
+  if (!swipeStack) return;
+  const position = document.querySelector('#swipe-position');
+  if (!visiblePlants.length) {
+    swipeStack.innerHTML = '';
+    position.textContent = text('emptyState');
+    return;
+  }
+  const total = visiblePlants.length;
+  const current = language === 'ar' ? (deckIndex + 1).toLocaleString('ar') : deckIndex + 1;
+  const formattedTotal = language === 'ar' ? total.toLocaleString('ar') : total;
+  const active = plantCardDetails(visiblePlants[deckIndex]);
+  position.textContent = text('swipePosition')
     .replace('{current}', current)
-    .replace('{total}', total)
-    .replace('{name}', currentPlant.name);
+    .replace('{total}', formattedTotal)
+    .replace('{name}', active.localized.name);
+  const cards = [];
+  for (let depth = Math.min(total, 3) - 1; depth >= 0; depth--) {
+    const index = (deckIndex + depth) % total;
+    const plant = visiblePlants[index];
+    const { localized, season, color, category } = plantCardDetails(plant);
+    const isActive = depth === 0;
+    const content = `
+      <img class="swipe-card-image" src="${photoUrl(plant.image, 900)}" alt="${localized.name}" draggable="false">
+      <span class="swipe-card-tint"></span>
+      <span class="swipe-card-content">
+        <span class="swipe-card-category">${category}</span>
+        <span class="swipe-card-title">${localized.name}</span>
+        <span class="swipe-card-latin">${plant.latin}</span>
+        <span class="swipe-card-meta">${season} · ${color}</span>
+      </span>`;
+    cards.push(isActive
+      ? `<a class="swipe-card is-active" href="plants/${plant.slug}/" aria-label="${text('viewPlant')} ${localized.name}" data-swipe-card>${content}</a>`
+      : `<div class="swipe-card is-underlay" aria-hidden="true" style="--stack-depth:${depth}">${content}</div>`);
+  }
+  swipeStack.innerHTML = cards.join('');
 }
-if (grid) {
-  window.addEventListener('resize', updateWheelRadius);
+
+function advanceDeck(direction) {
+  if (visiblePlants.length < 2) return;
+  deckIndex = (deckIndex + direction + visiblePlants.length) % visiblePlants.length;
+  renderDeck();
+}
+
+if (grid && swipeStack) {
   document.querySelector('#plant-search').addEventListener('input', renderPlants);
   document.querySelectorAll('.filter-chip').forEach(button => button.addEventListener('click', () => {
     selectedFilter = button.dataset.filter;
@@ -292,38 +308,57 @@ if (grid) {
     });
     renderPlants();
   }));
-  function rotateWheel(direction) {
-    if (!visiblePlants.length) return;
-    wheelOffset = (wheelOffset + direction + visiblePlants.length) % visiblePlants.length;
-    updateWheelPositions();
+  document.querySelector('#swipe-prev').addEventListener('click', () => advanceDeck(-1));
+  document.querySelector('#swipe-next').addEventListener('click', () => advanceDeck(1));
+
+  let pointerStart = null;
+  swipeStage.addEventListener('pointerdown', event => {
+    const card = event.target.closest('[data-swipe-card]');
+    if (!card || event.button > 0) return;
+    pointerStart = { x: event.clientX, y: event.clientY, card };
+    card.setPointerCapture(event.pointerId);
+  });
+  swipeStage.addEventListener('pointermove', event => {
+    if (!pointerStart) return;
+    const dx = event.clientX - pointerStart.x;
+    const dy = event.clientY - pointerStart.y;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
+      pointerStart.card.classList.add('is-dragging');
+      pointerStart.card.style.setProperty('--swipe-x', `${dx}px`);
+      pointerStart.card.style.setProperty('--swipe-rotation', `${dx * 0.055}deg`);
+    }
+  });
+  function finishSwipe(event) {
+    if (!pointerStart) return;
+    const dx = event.clientX - pointerStart.x;
+    const dy = event.clientY - pointerStart.y;
+    const card = pointerStart.card;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 90) {
+      suppressSwipeClick = true;
+      card.classList.remove('is-dragging');
+      card.classList.add(dx < 0 ? 'is-swiping-left' : 'is-swiping-right');
+      window.setTimeout(() => advanceDeck(dx < 0 ? 1 : -1), 240);
+      window.setTimeout(() => { suppressSwipeClick = false; }, 250);
+    } else {
+      card.classList.remove('is-dragging');
+      card.style.removeProperty('--swipe-x');
+      card.style.removeProperty('--swipe-rotation');
+    }
+    pointerStart = null;
   }
-  document.querySelector('#wheel-prev').addEventListener('click', () => rotateWheel(-1));
-  document.querySelector('#wheel-next').addEventListener('click', () => rotateWheel(1));
-  grid.addEventListener('keydown', event => {
-    if (event.target.closest('a')) return;
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault();
-      rotateWheel(language === 'ar' ? 1 : -1);
-    }
-    if (event.key === 'ArrowRight') {
-      event.preventDefault();
-      rotateWheel(language === 'ar' ? -1 : 1);
-    }
+  swipeStage.addEventListener('pointerup', finishSwipe);
+  swipeStage.addEventListener('pointercancel', event => {
+    if (!pointerStart) return;
+    pointerStart.card.classList.remove('is-dragging');
+    pointerStart.card.style.removeProperty('--swipe-x');
+    pointerStart.card.style.removeProperty('--swipe-rotation');
+    pointerStart = null;
   });
-  let dragStart = null;
-  grid.addEventListener('pointerdown', event => {
-    if (event.target.closest('a, button')) return;
-    dragStart = event.clientX;
-  });
-  window.addEventListener('pointerup', event => {
-    if (dragStart === null) return;
-    const distance = event.clientX - dragStart;
-    if (Math.abs(distance) > 40) rotateWheel(distance < 0 ? 1 : -1);
-    dragStart = null;
-  });
-  grid.addEventListener('pointercancel', () => {
-    dragStart = null;
-  });
+  swipeStage.addEventListener('click', event => {
+    if (!suppressSwipeClick) return;
+    event.preventDefault();
+    event.stopPropagation();
+  }, true);
 }
 
 const detail = document.querySelector('[data-plant]');
