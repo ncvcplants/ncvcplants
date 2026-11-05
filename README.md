@@ -2,6 +2,8 @@
 
 A small, no-install plant and seed showcase. The homepage has sample plant cards you can search and filter. Each plant has its own page with a photo gallery, growing notes, and a QR code that points to that page.
 
+The site opens in Arabic and can be switched to English, including a right-to-left Arabic layout. Use the dark-mode button to change the colors, or switch the collection between regular cards and the circular plant wheel.
+
 ## See the site
 
 Open `index.html` in a web browser to preview the collection on your computer. The photos and QR code need an internet connection. A QR code uses the address of the page you opened, so use the code from the live website after publishing—not the preview on your computer.

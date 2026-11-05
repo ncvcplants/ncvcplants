@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f5ee">
-  <meta name="description" content="A little field guide to the seeds and plants in my collection.">
-  <title>Seed & Soil — A little seed library</title>
+  <meta name="description" content="Browse the Seed & Soil plant collection.">
+  <title>Seed & Soil — Plant collection</title>
   <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -13,46 +13,35 @@
 <body>
   <header class="topbar wrap">
     <a class="brand" href="index.html" aria-label="Seed and Soil home"><span class="brand-mark" aria-hidden="true">s.</span><span>seed & soil</span></a>
-    <a class="top-link" href="#collection">Explore the collection <span aria-hidden="true">↘</span></a>
+    <nav class="site-controls" aria-label="Site settings" data-i18n-aria="siteSettings">
+      <button class="control-button" type="button" data-language-button aria-label="Switch language">العربية</button>
+      <button class="control-button theme-button" type="button" data-theme-button aria-pressed="false">Dark mode</button>
+    </nav>
   </header>
   <main>
-    <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> A tiny seed library <span class="eyebrow-year">· est. 2025</span></p>
-        <h1 id="hero-title">Small seeds.<br><span>Big stories.</span></h1>
-        <p class="hero-description">A growing collection of seeds, plants, and the little things that help them thrive. Pick a packet and come on in.</p>
-        <a class="button button-dark" href="#collection">Meet the plants <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="hero-art" aria-label="Sunlit green leaves" role="img">
-        <div class="art-label"><span class="art-label-dot"></span> GROW SOMETHING GOOD</div>
-        <div class="hero-art-sticker" aria-hidden="true">take<br>it slow<span>✳</span></div>
-      </div>
-      <div class="hero-foot"><span>GOOD THINGS TAKE ROOT</span><span>01 — 04 <span aria-hidden="true">✳</span></span></div>
-    </section>
-
     <section class="collection wrap" id="collection" aria-labelledby="collection-title">
       <div class="section-heading">
-        <div><p class="eyebrow">A few things growing</p><h2 id="collection-title">The collection<span class="heading-period">.</span></h2></div>
+        <div><h1 id="collection-title" data-i18n="collectionTitle">Plant collection</h1></div>
         <p class="collection-count" id="collection-count" aria-live="polite"></p>
       </div>
       <div class="collection-tools">
-        <label class="search-box"><span class="sr-only">Search plants</span><span class="search-icon" aria-hidden="true">⌕</span><input id="plant-search" type="search" placeholder="Find a plant…" autocomplete="off"></label>
-        <div class="filter-list" role="group" aria-label="Filter plants by type">
-          <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">Everything</button>
-          <button class="filter-chip" type="button" data-filter="flower" aria-pressed="false">Flowers</button>
-          <button class="filter-chip" type="button" data-filter="herb" aria-pressed="false">Herbs</button>
-          <button class="filter-chip" type="button" data-filter="houseplant" aria-pressed="false">Houseplants</button>
+        <label class="search-box"><span class="sr-only" data-i18n="searchLabel">Search plants</span><span class="search-icon" aria-hidden="true">⌕</span><input id="plant-search" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search plants" autocomplete="off"></label>
+        <div class="filter-list" role="group" aria-label="Filter plants by type" data-i18n-aria="filterLabel">
+          <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true" data-i18n="allFilter">All</button>
+          <button class="filter-chip" type="button" data-filter="flower" aria-pressed="false" data-i18n="flowerFilter">Flowers</button>
+          <button class="filter-chip" type="button" data-filter="herb" aria-pressed="false" data-i18n="herbFilter">Herbs</button>
+          <button class="filter-chip" type="button" data-filter="houseplant" aria-pressed="false" data-i18n="houseplantFilter">Houseplants</button>
         </div>
       </div>
+      <div class="view-controls" role="group" aria-label="Plant collection view" data-i18n-aria="viewLabel">
+        <button class="view-button is-active" type="button" data-view="cards" aria-pressed="true" data-i18n="cardsView">Cards</button>
+        <button class="view-button" type="button" data-view="wheel" aria-pressed="false" data-i18n="wheelView">Plant wheel</button>
+      </div>
+      <div class="wheel-hub" aria-hidden="true" data-i18n="wheelHub">SEED LIBRARY</div>
       <div class="plant-grid" id="plant-grid" aria-live="polite"></div>
-      <p class="empty-state" id="empty-state" hidden>No plants found. Try another name or filter.</p>
-      <p class="sample-note"><span aria-hidden="true">✳</span> These are sample plants to get you started. You can replace them with your own in <code>app.js</code>.</p>
-    </section>
-
-    <section class="note-band" aria-label="A note about growing">
-      <div class="note-band-inner wrap"><span class="note-flower" aria-hidden="true">✳</span><p>Every seed holds a little <em>possibility.</em></p><span class="note-signature">— keep growing</span></div>
+      <p class="empty-state" id="empty-state" hidden data-i18n="emptyState">No plants found. Try another search.</p>
     </section>
   </main>
-  <footer class="footer wrap"><a class="brand brand-small" href="index.html"><span class="brand-mark" aria-hidden="true">s.</span><span>seed & soil</span></a><p>Made with care, and a little dirt. <span aria-hidden="true">♥</span></p><a class="back-top" href="#top">Back to top ↑</a></footer>
+  <footer class="footer wrap"><a class="brand brand-small" href="index.html"><span class="brand-mark" aria-hidden="true">s.</span><span>seed & soil</span></a><a class="back-top" href="#top" data-i18n="backToTop">Back to top ↑</a></footer>
 </body>
 </html>
