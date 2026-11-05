@@ -1,129 +1,96 @@
-// Edit this list to add your plants. Each plant needs a matching folder in plants/.
+// Plant entries: edit the Arabic/English names here, then fill in the seven fact fields when verified.
 const plants = [
-  {
-    slug: 'sunflower', name: 'Sunflower', latin: 'Helianthus annuus', category: 'flower', categoryLabel: 'Flower', color: 'Golden yellow', season: 'Summer',
-    image: 'photo-1597848212624-e6e3b0f1f0fa', imagePosition: 'center center', description: 'A tall annual flower with bright yellow petals and edible seeds.',
-    gallery: ['photo-1597848212624-e6e3b0f1f0fa', 'photo-1470252649378-9c29740c9fa8', 'photo-1500382017468-9049fed747ef'],
-    info: [
-      ['About this plant', 'Sunflowers are annuals native to North America. Their familiar flower head is made up of many tiny flowers, and young plants turn to follow the sun.'],
-      ['Sowing your seeds', 'Sow outdoors after the last frost, about 2.5 cm (1 in) deep. Give each plant room to grow, and choose a sunny spot protected from strong wind.'],
-      ['Light & water', 'Full sun is best: aim for at least 6–8 hours a day. Water deeply while the plant is young; established plants are fairly drought tolerant.'],
-      ['Additional notes', 'Flowers attract bees and birds. Save a few mature seed heads to dry for next year or leave them out as a snack for wildlife.']
-    ]
-  },
-  {
-    slug: 'sweet-basil', name: 'Sweet Basil', latin: 'Ocimum basilicum', category: 'herb', categoryLabel: 'Herb', color: 'Fresh green', season: 'Warm months',
-    image: 'photo-1618164436241-4473940d1f5c', imagePosition: 'center center', description: 'A culinary herb with aromatic leaves commonly used fresh or dried.',
-    gallery: ['photo-1618164436241-4473940d1f5c', 'photo-1618375569909-3c8616cf7733', 'photo-1466692476868-aef1dfb1e735'],
-    info: [
-      ['About this plant', 'Sweet basil is a tender, leafy annual herb loved for its aromatic leaves. Warmth, regular picking, and a bright windowsill help it flourish.'],
-      ['Sowing your seeds', 'Start indoors in a warm place, barely covering the seeds. Move seedlings outside only after nights are reliably warm, or keep them in a sunny pot.'],
-      ['Light & water', 'Give basil 6 or more hours of sunlight and keep the soil evenly moist, not soggy. Good drainage helps keep roots healthy.'],
-      ['Additional notes', 'Pinch off the tips above a pair of leaves to encourage bushier growth. Remove flower buds to keep the leaves coming.']
-    ]
-  },
-  {
-    slug: 'lavender', name: 'Lavender', latin: 'Lavandula angustifolia', category: 'flower', categoryLabel: 'Flower', color: 'Soft violet', season: 'Summer',
-    image: 'photo-1470252649378-9c29740c9fa8', imagePosition: 'center center', description: 'A fragrant perennial shrub with purple flower spikes that attract pollinators.',
-    gallery: ['photo-1470252649378-9c29740c9fa8', 'photo-1499002238440-d264edd596ec', 'photo-1497250681960-ef046c08a56e'],
-    info: [
-      ['About this plant', 'English lavender is a woody perennial known for its scented foliage and purple flower spikes. Once established, it prefers life on the drier side.'],
-      ['Sowing your seeds', 'Lavender seeds can be slow to sprout. Sow on the surface of a free-draining seed mix, keep lightly moist, and be patient; germination may take a few weeks.'],
-      ['Light & water', 'Choose full sun and well-drained soil. Water young plants as they establish, then let the soil dry between waterings.'],
-      ['Additional notes', 'Trim lightly after flowering to keep a neat shape, but avoid cutting into old woody stems.']
-    ]
-  },
-  {
-    slug: 'monstera', name: 'Monstera', latin: 'Monstera deliciosa', category: 'houseplant', categoryLabel: 'Houseplant', color: 'Deep green', season: 'Year-round',
-    image: 'photo-1501004318641-b39e6451bec6', imagePosition: 'center center', description: 'A tropical climbing houseplant with large, split leaves. It grows best in bright, indirect light.',
-    gallery: ['photo-1501004318641-b39e6451bec6', 'photo-1485955903447-4fcbf3f13fd0', 'photo-1497250681960-ef046c08a56e'],
-    info: [
-      ['About this plant', 'Monstera deliciosa is a tropical climbing plant. In bright conditions, mature leaves develop natural splits and holes that give the plant its iconic look.'],
-      ['Starting from seed', 'Fresh seeds are best. Sow soon after collecting in a warm, moist seed mix; seeds sold dried may not germinate. Many people grow monstera from cuttings instead.'],
-      ['Light & water', 'Place in bright, indirect light. Water when the top few centimetres of soil feel dry, and let excess water drain away.'],
-      ['Additional notes', 'A moss pole gives this climber support as it grows. Wipe leaves occasionally to keep them dust-free. Keep away from pets.']
-    ]
-  }
+  ['artaa', 'الأرطى', 'Arta'], ['basbas', 'البسباس', 'Basbas'], ['akhrit', 'الأخريط', 'Akhrit'],
+  ['khuzama', 'الخزامى', 'Khuzama'], ['raghl', 'الرغل', 'Raghl'], ['raqrouq', 'الرقروق', 'Raqrouq'],
+  ['sidr-bari', 'السدر البري', 'Sidr bari'], ['samar', 'السمر', 'Samar'], ['wahat', 'الوهط', 'Wahat'],
+  ['hajlije', 'الهجليج', 'Hajlije'], ['qufl', 'القفل', 'Qufl'], ['arfaj', 'العرفج', 'Arfaj'],
+  ['humayd', 'الحميض', 'Humayd'], ['nassi', 'النصي', 'Nassi'], ['shinnan', 'الشنان', 'Shinnan'],
+  ['dhamran', 'الضمران', 'Dhamran'], ['ban-arabi', 'البان العربي', 'Al ban al arabi'], ['talh-najdi', 'الطلح النجدي', 'Talh najdi'],
+  ['sidr-jabali', 'السدر الجبلي', 'Sidr jabali'], ['ratam', 'الرتم', 'Ratam'], ['qarad-arabi', 'القرض العربي', 'Qarad arabi'],
+  ['arak', 'الأراك', 'Arak'], ['marakh', 'المرخ', 'Marakh'], ['ruthah', 'الروثة', 'Ruthah'],
+  ['ghada', 'الغضا', 'Ghada'], ['fars', 'الفرس', 'Fars'], ['qaysum', 'القيصوم', 'Qaysum'],
+  ['buaythiran', 'البعيثران', 'Buaythiran'], ['ghaf', 'الغاف', 'Ghaf'], ['shafallah', 'الشفلح', 'Shafallah'],
+  ['shih', 'الشيح', 'Shih'], ['salm', 'السلم', 'Salm'], ['tahmah', 'الطحمة', 'Tahmah'],
+  ['arar', 'العرعر', 'Arar'], ['asal', 'الأسل', 'Asal'], ['rabalah', 'الربلة', 'Rabalah'],
+  ['raqaah', 'الرقاعة', 'Raqaah'], ['qatif', 'القطف', 'Qatif'], ['sibat', 'السبط', 'Sibat'],
+  ['jada', 'الجعدة', 'Jada'], ['thamaam', 'الثمام', 'Thamaam'], ['lasaf', 'اللصف', 'Lasaf']
+].map(([slug, name, nameEn], index) => ({
+  slug,
+  name,
+  nameEn,
+  commonNames: '',
+  scientificName: '',
+  family: '',
+  botanicalDescription: '',
+  geographicDistribution: '',
+  ecologyReproduction: '',
+  otherUses: '',
+  // These are general sample photos, not confirmed photos of the named species.
+  image: ['photo-1497250681960-ef046c08a56e', 'photo-1501004318641-b39e6451bec6', 'photo-1485955903447-4fcbf3f13fd0'][index % 3],
+  gallery: [
+    'photo-1497250681960-ef046c08a56e',
+    'photo-1501004318641-b39e6451bec6',
+    'photo-1485955903447-4fcbf3f13fd0'
+  ]
+}));
+
+// The heading keys match translations below; the field names match each plant entry above.
+const informationGroups = [
+  ['commonNames', 'commonNamesHeading'],
+  ['scientificName', 'scientificNameHeading'],
+  ['family', 'familyHeading'],
+  ['botanicalDescription', 'botanicalDescriptionHeading'],
+  ['geographicDistribution', 'geographicDistributionHeading'],
+  ['ecologyReproduction', 'ecologyReproductionHeading'],
+  ['otherUses', 'otherUsesHeading']
 ];
 
 const translations = {
   en: {
-    collectionTitle: 'Plant collection', catalogHeading: 'All plants', swipeHeading: 'Discover plants', swipeHint: 'Swipe left or right to explore',
-    siteSettings: 'Site settings', searchLabel: 'Search plants', searchPlaceholder: 'Search plants',
-    filterLabel: 'Filter plants by type', allFilter: 'All', flowerFilter: 'Flowers', herbFilter: 'Herbs',
-    houseplantFilter: 'Houseplants', browsePlants: 'Browse plants', previousPlant: 'Previous plant',
-    nextPlant: 'Next plant', swipePosition: 'Plant {current} of {total}: {name}',
-    emptyState: 'No plants found. Try another search.', backToTop: 'Back to top ↑', darkMode: 'Dark mode',
-    lightMode: 'Light mode', switchLanguage: 'العربية', plantCountOne: 'plant', plantCountMany: 'plants',
-    inCollection: 'in the collection', viewPlant: 'View', seed: 'SEED',
-    allPlants: 'All plants', seedNote: 'plant profile', photo: 'Photo', previousPhoto: 'Previous photo',
-    nextPhoto: 'Next photo', photoGallery: 'Plant photo gallery', aboutPlant: 'About the plant',
-    qrTitle: 'Plant QR code', qrDescription: 'Scan to open this plant page.', openPage: 'Open this page',
-    shareLink: 'Shareable page link', copyLink: 'Copy page link', copied: 'Link copied!',
-    copyManually: 'Select and copy the link above.', qrCredit: 'QR code provided by QR Server.',
-    morePlants: 'More plants', notFoundTitle: 'Plant not found', notFoundDescription: 'This plant page is not in the collection yet.',
-    backToCollection: 'Back to the collection', categoryFlower: 'Flower', categoryHerb: 'Herb',
-    categoryHouseplant: 'Houseplant', seasonSummer: 'Summer', seasonWarm: 'Warm season',
-    seasonYearRound: 'Year-round', colorYellow: 'Golden yellow', colorGreen: 'Fresh green',
-    colorViolet: 'Soft violet', colorDeepGreen: 'Deep green'
+    collectionTitle: 'Plant collection', catalogHeading: 'All plants', swipeHeading: 'Browse plants',
+    swipeHint: 'Swipe a card or use the arrows', siteSettings: 'Site settings',
+    searchLabel: 'Search plants', searchPlaceholder: 'Search plants',
+    browsePlants: 'Browse plants', previousPlant: 'Previous plant', nextPlant: 'Next plant',
+    swipePosition: 'Plant {current} of {total}: {name}', emptyState: 'No plants found. Try another search.',
+    backToTop: 'Back to top ↑', darkMode: 'Dark mode', lightMode: 'Light mode',
+    switchLanguage: 'العربية', plantCountOne: 'plant', plantCountMany: 'plants', inCollection: 'in the collection',
+    viewPlant: 'View', seed: 'Plant', allPlants: 'All plants', seedNote: 'Plant information',
+    photo: 'Photo', previousPhoto: 'Previous photo', nextPhoto: 'Next photo',
+    photoGallery: 'Plant photo gallery', aboutPlant: 'Plant information',
+    qrTitle: 'Plant QR code', qrDescription: 'Scan to open this plant page.',
+    openPage: 'Open this page', shareLink: 'Page link', copyLink: 'Copy page link',
+    copied: 'Link copied!', copyManually: 'Select and copy the link above.',
+    qrCredit: 'Creating the code requires an internet connection.', morePlants: 'More plants',
+    notFoundTitle: 'Plant not found', notFoundDescription: 'This plant page is not in the collection.',
+    backToCollection: 'Back to the collection', missingInfo: 'This information has not been added yet.',
+    commonNamesHeading: 'Common name', commonNamesEmpty: 'Other names not added',
+    scientificNameHeading: 'Scientific name', familyHeading: 'Family',
+    botanicalDescriptionHeading: 'Botanical description', geographicDistributionHeading: 'Geographic distribution',
+    ecologyReproductionHeading: 'Ecology and reproduction', otherUsesHeading: 'Other uses',
+    samplePhotos: 'General sample photos; replace these with photos of this plant.'
   },
   ar: {
-    collectionTitle: 'مجموعة النباتات', catalogHeading: 'كل النباتات', swipeHeading: 'اكتشف النباتات', swipeHint: 'اسحب يمينًا أو يسارًا لاستكشاف النباتات',
-    siteSettings: 'إعدادات الموقع', searchLabel: 'ابحث عن نبات', searchPlaceholder: 'ابحث عن نبات',
-    filterLabel: 'تصفية النباتات حسب النوع', allFilter: 'الكل', flowerFilter: 'أزهار', herbFilter: 'أعشاب',
-    houseplantFilter: 'نباتات منزلية', browsePlants: 'تصفح النباتات', previousPlant: 'النبات السابق',
-    nextPlant: 'النبات التالي', swipePosition: 'النبات {current} من {total}: {name}',
-    emptyState: 'لم يتم العثور على نباتات. جرّب بحثًا آخر.', backToTop: 'العودة إلى الأعلى ↑', darkMode: 'الوضع الداكن',
-    lightMode: 'الوضع الفاتح', switchLanguage: 'English', plantCountOne: 'نبات', plantCountMany: 'نباتات',
-    inCollection: 'في المجموعة', viewPlant: 'عرض', seed: 'بذرة',
-    allPlants: 'كل النباتات', seedNote: 'معلومات النبات', photo: 'صورة', previousPhoto: 'الصورة السابقة',
-    nextPhoto: 'الصورة التالية', photoGallery: 'معرض صور النبات', aboutPlant: 'عن النبات',
-    qrTitle: 'رمز QR للنبات', qrDescription: 'امسح الرمز لفتح صفحة النبات.', openPage: 'فتح الصفحة',
-    shareLink: 'رابط الصفحة', copyLink: 'نسخ رابط الصفحة', copied: 'تم نسخ الرابط!',
-    copyManually: 'حدّد الرابط أعلاه وانسخه.', qrCredit: 'رمز QR مقدم من QR Server.',
-    morePlants: 'نباتات أخرى', notFoundTitle: 'النبات غير موجود', notFoundDescription: 'صفحة هذا النبات غير موجودة في المجموعة.',
-    backToCollection: 'العودة إلى المجموعة', categoryFlower: 'زهرة', categoryHerb: 'عشب',
-    categoryHouseplant: 'نبات منزلي', seasonSummer: 'الصيف', seasonWarm: 'الموسم الدافئ',
-    seasonYearRound: 'طوال العام', colorYellow: 'أصفر ذهبي', colorGreen: 'أخضر نضر',
-    colorViolet: 'بنفسجي فاتح', colorDeepGreen: 'أخضر داكن',
-    plants: {
-      sunflower: {
-        name: 'عبّاد الشمس', description: 'نبات حولي طويل بأزهار صفراء زاهية وبذور صالحة للأكل.',
-        info: [
-          ['عن النبات', 'عبّاد الشمس نبات حولي موطنه الأصلي أمريكا الشمالية. يتكوّن رأس الزهرة من أزهار صغيرة كثيرة، وتتبع النباتات الفتية حركة الشمس.'],
-          ['زراعة البذور', 'ازرع البذور في الخارج بعد انتهاء الصقيع، على عمق نحو ٢٫٥ سم. اترك مساحة كافية لكل نبتة واختر مكانًا مشمسًا محميًا من الرياح القوية.'],
-          ['الضوء والماء', 'يفضل النبات الشمس المباشرة لمدة ٦ إلى ٨ ساعات يوميًا. اسقه بعمق في بداية نموه؛ فالنباتات الناضجة تتحمل الجفاف نسبيًا.'],
-          ['ملاحظات', 'تجذب الأزهار النحل والطيور. جفف بعض رؤوس البذور الناضجة للزراعة في العام المقبل أو اتركها غذاءً للطيور.']
-        ]
-      },
-      'sweet-basil': {
-        name: 'الريحان الحلو', description: 'عشبة تستخدم في الطهي، ذات أوراق عطرية تستعمل طازجة أو مجففة.',
-        info: [
-          ['عن النبات', 'الريحان الحلو عشبة حولية محبة للدفء، تشتهر بأوراقها العطرية. يساعده الدفء والقطف المنتظم والضوء الساطع على النمو.'],
-          ['زراعة البذور', 'ابدأ بزراعته داخل المنزل في مكان دافئ، وغطِّ البذور بطبقة خفيفة من التربة. انقله للخارج بعد اعتدال الليالي أو أبقه في أصيص مشمس.'],
-          ['الضوء والماء', 'وفّر له ضوء الشمس لمدة ٦ ساعات أو أكثر، وحافظ على رطوبة التربة دون إغراقها. يساعد تصريف الماء الجيد على صحة الجذور.'],
-          ['ملاحظات', 'اقطف أطراف الأغصان فوق زوج من الأوراق لتشجيع النمو الكثيف. أزل براعم الأزهار للحفاظ على نمو الأوراق.']
-        ]
-      },
-      lavender: {
-        name: 'الخُزامى', description: 'شجيرة معمرة عطرية ذات أزهار بنفسجية تجذب الملقحات.',
-        info: [
-          ['عن النبات', 'الخُزامى الإنجليزية نبات معمر خشبي، تشتهر أوراقه وأزهاره البنفسجية برائحتها. يفضل التربة الأقل رطوبة بعد استقراره.'],
-          ['زراعة البذور', 'قد يتأخر إنبات بذور الخُزامى. ضعها على سطح تربة جيدة التصريف، وحافظ على رطوبتها الخفيفة؛ فقد يستغرق الإنبات بضعة أسابيع.'],
-          ['الضوء والماء', 'اختر مكانًا مشمسًا وتربة جيدة التصريف. اسقِ النباتات الفتية حتى تستقر، ثم اترك التربة تجف بين مرات الري.'],
-          ['ملاحظات', 'قلّم النبات قليلًا بعد الإزهار للحفاظ على شكله، وتجنب قصّ الأغصان الخشبية القديمة. تجذب الأزهار الملقحات.']
-        ]
-      },
-      monstera: {
-        name: 'مونستيرا', description: 'نبات منزلي استوائي متسلق بأوراق كبيرة مشققة. يفضل الضوء الساطع غير المباشر.',
-        info: [
-          ['عن النبات', 'مونستيرا دليسيوزا نبات متسلق استوائي. تظهر الشقوق والفتحات الطبيعية على أوراقه الناضجة عند نموه في ضوء ساطع.'],
-          ['الزراعة من البذور', 'استخدم البذور الطازجة وازرعها سريعًا في تربة دافئة ورطبة؛ فقد لا تنبت البذور المجففة. يزرع كثيرون المونستيرا من العقل بدلًا من البذور.'],
-          ['الضوء والماء', 'ضعه في ضوء ساطع غير مباشر. اسقه عندما تجف الطبقة العليا من التربة، واترك الماء الزائد يتصرف.'],
-          ['ملاحظات', 'تساعده دعامة من ألياف جوز الهند على التسلق. امسح الغبار عن الأوراق، وأبعده عن الحيوانات الأليفة.']
-        ]
-      }
-    }
+    collectionTitle: 'مجموعة النباتات', catalogHeading: 'كل النباتات', swipeHeading: 'تصفح النباتات',
+    swipeHint: 'اسحب البطاقة أو استخدم الأسهم', siteSettings: 'إعدادات الموقع',
+    searchLabel: 'ابحث عن نبات', searchPlaceholder: 'ابحث عن نبات',
+    browsePlants: 'تصفح النباتات', previousPlant: 'النبات السابق', nextPlant: 'النبات التالي',
+    swipePosition: 'النبات {current} من {total}: {name}', emptyState: 'لم يتم العثور على نباتات. جرّب بحثًا آخر.',
+    backToTop: 'العودة إلى الأعلى ↑', darkMode: 'الوضع الداكن', lightMode: 'الوضع الفاتح',
+    switchLanguage: 'English', plantCountOne: 'نبات', plantCountMany: 'نباتات', inCollection: 'في المجموعة',
+    viewPlant: 'عرض', seed: 'نبات', allPlants: 'كل النباتات', seedNote: 'معلومات النبات',
+    photo: 'صورة', previousPhoto: 'الصورة السابقة', nextPhoto: 'الصورة التالية',
+    photoGallery: 'معرض صور النبات', aboutPlant: 'معلومات النبات',
+    qrTitle: 'رمز QR للنبات', qrDescription: 'امسح الرمز لفتح صفحة النبات.',
+    openPage: 'فتح الصفحة', shareLink: 'رابط الصفحة', copyLink: 'نسخ رابط الصفحة',
+    copied: 'تم نسخ الرابط!', copyManually: 'حدّد الرابط أعلاه وانسخه.',
+    qrCredit: 'يحتاج إنشاء الرمز إلى اتصال بالإنترنت.', morePlants: 'نباتات أخرى',
+    notFoundTitle: 'النبات غير موجود', notFoundDescription: 'صفحة هذا النبات غير موجودة في المجموعة.',
+    backToCollection: 'العودة إلى المجموعة', missingInfo: 'لم تتم إضافة هذه المعلومة بعد.',
+    commonNamesHeading: 'الاسم العام', commonNamesEmpty: 'أسماء أخرى غير مضافة',
+    scientificNameHeading: 'الاسم العلمي', familyHeading: 'الفصيلة',
+    botanicalDescriptionHeading: 'الوصف النباتي', geographicDistributionHeading: 'التوزيع الجغرافي',
+    ecologyReproductionHeading: 'البيئية و التكاثر', otherUsesHeading: 'الاستعمالات الأخرى',
+    samplePhotos: 'صور تجريبية عامة؛ استبدلها بصور النبات الصحيح.'
   }
 };
 
@@ -147,13 +114,13 @@ const photoUrl = (id, width = 780) => id.startsWith('http')
   ? id
   : `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`;
 const text = key => translations[language][key];
-const plantText = plant => language === 'ar' ? translations.ar.plants[plant.slug] : plant;
+const plantText = plant => ({ name: language === 'ar' ? plant.name : plant.nameEn });
 
 function applyPreferences() {
   const isArabic = language === 'ar';
   document.documentElement.lang = language;
   document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
-  document.title = document.querySelector('[data-plant]')
+  document.title = document.querySelector('[data-plant-page]')
     ? `${text('aboutPlant')} — Seed & Soil`
     : `${text('collectionTitle')} — Seed & Soil`;
   document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -198,29 +165,26 @@ const grid = document.querySelector('#plant-grid');
 const swipeStack = document.querySelector('#swipe-stack');
 const swipeStage = document.querySelector('#swipe-stage');
 const swipeSection = document.querySelector('.swipe-section');
-let selectedFilter = 'all';
 let deckIndex = 0;
 let visiblePlants = [];
 let suppressSwipeClick = false;
 
 function plantCardDetails(plant) {
   const localized = plantText(plant);
-  const season = language === 'ar' ? text(plant.season === 'Summer' ? 'seasonSummer' : plant.season === 'Year-round' ? 'seasonYearRound' : 'seasonWarm') : plant.season;
-  const color = language === 'ar' ? text(({ 'Golden yellow': 'colorYellow', 'Fresh green': 'colorGreen', 'Soft violet': 'colorViolet', 'Deep green': 'colorDeepGreen' })[plant.color]) : plant.color;
-  const category = language === 'ar' ? text(({ flower: 'categoryFlower', herb: 'categoryHerb', houseplant: 'categoryHouseplant' })[plant.category]) : plant.categoryLabel;
-  return { localized, season, color, category };
+  return { localized };
 }
 
 function renderPlants() {
   if (!grid || !swipeStack) return;
+  window.clearTimeout(deckAnimationTimer);
+  deckAdvancing = false;
   const search = document.querySelector('#plant-search');
   const count = document.querySelector('#collection-count');
   const empty = document.querySelector('#empty-state');
   const query = search.value.trim().toLocaleLowerCase(language);
   visiblePlants = plants.filter(plant => {
-    const { localized, category } = plantCardDetails(plant);
-    return (selectedFilter === 'all' || plant.category === selectedFilter) &&
-      `${plant.name} ${localized.name} ${plant.latin} ${category}`.toLocaleLowerCase(language).includes(query);
+    const { localized } = plantCardDetails(plant);
+    return `${plant.name} ${localized.name} ${plant.commonNames}`.toLocaleLowerCase(language).includes(query);
   });
   deckIndex = visiblePlants.length ? deckIndex % visiblePlants.length : 0;
   const formattedCount = language === 'ar' ? visiblePlants.length.toLocaleString('ar') : visiblePlants.length;
@@ -236,18 +200,18 @@ function renderPlants() {
   });
   renderDeck();
   grid.innerHTML = visiblePlants.map(plant => {
-    const { localized, season, color, category } = plantCardDetails(plant);
+    const { localized } = plantCardDetails(plant);
+    const link = `plants/index.html?plant=${encodeURIComponent(plant.slug)}`;
     return `
       <article class="plant-card">
-        <a class="card-image-link" href="plants/${plant.slug}/" aria-label="${text('viewPlant')} ${localized.name}">
-          <img class="card-image" src="${photoUrl(plant.image)}" alt="${localized.name}" loading="lazy" style="object-position:${plant.imagePosition}">
-          <span class="card-number">${text('seed')} 0${plants.indexOf(plant) + 1}</span>
+        <a class="card-image-link" href="${link}" aria-label="${text('viewPlant')} ${localized.name}">
+          <img class="card-image" src="${photoUrl(plant.image)}" alt="${text('samplePhotos')}" loading="lazy">
+          <span class="card-number">${text('seed')} ${String(plants.indexOf(plant) + 1).padStart(2, '0')}</span>
         </a>
         <div class="card-content">
-          <p class="card-category">${category}</p>
-          <h2 class="card-title"><a href="plants/${plant.slug}/">${localized.name}</a></h2>
-          <p class="card-latin">${plant.latin}</p>
-          <div class="card-bottom"><span>${season} · ${color}</span><a class="card-link" href="plants/${plant.slug}/" aria-label="${text('viewPlant')} ${localized.name}">↗</a></div>
+          <p class="card-category">${text('seed')} ${String(plants.indexOf(plant) + 1).padStart(2, '0')}</p>
+          <h2 class="card-title"><a href="${link}">${localized.name}</a></h2>
+          <div class="card-bottom"><span>${text('seedNote')}</span><a class="card-link" href="${link}" aria-label="${text('viewPlant')} ${localized.name}">↗</a></div>
         </div>
       </article>`;
   }).join('');
@@ -269,45 +233,53 @@ function renderDeck() {
     .replace('{current}', current)
     .replace('{total}', formattedTotal)
     .replace('{name}', active.localized.name);
+  // Render the current plant plus a few neighbors to make the visible fan.
   const cards = [];
-  for (let depth = Math.min(total, 3) - 1; depth >= 0; depth--) {
+  for (let depth = Math.min(total, 4) - 1; depth >= 0; depth--) {
     const index = (deckIndex + depth) % total;
     const plant = visiblePlants[index];
-    const { localized, season, color, category } = plantCardDetails(plant);
+    const { localized } = plantCardDetails(plant);
+    const link = `plants/index.html?plant=${encodeURIComponent(plant.slug)}`;
     const isActive = depth === 0;
     const content = `
-      <img class="swipe-card-image" src="${photoUrl(plant.image, 900)}" alt="${localized.name}" draggable="false">
+      <img class="swipe-card-image" src="${photoUrl(plant.image, 900)}" alt="${text('samplePhotos')}" draggable="false">
       <span class="swipe-card-tint"></span>
       <span class="swipe-card-content">
-        <span class="swipe-card-category">${category}</span>
+        <span class="swipe-card-category">${text('seed')} ${String(plants.indexOf(plant) + 1).padStart(2, '0')}</span>
         <span class="swipe-card-title">${localized.name}</span>
-        <span class="swipe-card-latin">${plant.latin}</span>
-        <span class="swipe-card-meta">${season} · ${color}</span>
+        <span class="swipe-card-meta">${text('seedNote')}</span>
       </span>`;
     cards.push(isActive
-      ? `<a class="swipe-card is-active" href="plants/${plant.slug}/" aria-label="${text('viewPlant')} ${localized.name}" data-swipe-card>${content}</a>`
-      : `<div class="swipe-card is-underlay" aria-hidden="true" style="--stack-depth:${depth}">${content}</div>`);
+      ? `<a class="swipe-card is-active" href="${link}" aria-label="${text('viewPlant')} ${localized.name}" data-swipe-card>${content}</a>`
+      : `<div class="swipe-card is-underlay" aria-hidden="true" style="--stack-depth:${depth};--stack-x:${depth * (depth % 2 ? 10 : -10)}px;--stack-angle:${depth * (depth % 2 ? 3 : -3)}deg">${content}</div>`);
   }
   swipeStack.innerHTML = cards.join('');
 }
 
+let deckAnimationTimer;
+let deckAdvancing = false;
 function advanceDeck(direction) {
   if (visiblePlants.length < 2) return;
+  if (deckAdvancing) return;
+  const card = swipeStack.querySelector('.is-active');
+  if (card) {
+    deckAdvancing = true;
+    card.classList.add(direction > 0 ? 'is-swiping-left' : 'is-swiping-right');
+    window.clearTimeout(deckAnimationTimer);
+    // Let the outgoing card finish its transition before drawing the next one.
+    deckAnimationTimer = window.setTimeout(() => {
+      deckIndex = (deckIndex + direction + visiblePlants.length) % visiblePlants.length;
+      deckAdvancing = false;
+      renderDeck();
+    }, 250);
+    return;
+  }
   deckIndex = (deckIndex + direction + visiblePlants.length) % visiblePlants.length;
   renderDeck();
 }
 
 if (grid && swipeStack) {
   document.querySelector('#plant-search').addEventListener('input', renderPlants);
-  document.querySelectorAll('.filter-chip').forEach(button => button.addEventListener('click', () => {
-    selectedFilter = button.dataset.filter;
-    document.querySelectorAll('.filter-chip').forEach(chip => {
-      const active = chip === button;
-      chip.classList.toggle('is-active', active);
-      chip.setAttribute('aria-pressed', String(active));
-    });
-    renderPlants();
-  }));
   document.querySelector('#swipe-prev').addEventListener('click', () => advanceDeck(-1));
   document.querySelector('#swipe-next').addEventListener('click', () => advanceDeck(1));
 
@@ -337,7 +309,14 @@ if (grid && swipeStack) {
       suppressSwipeClick = true;
       card.classList.remove('is-dragging');
       card.classList.add(dx < 0 ? 'is-swiping-left' : 'is-swiping-right');
-      window.setTimeout(() => advanceDeck(dx < 0 ? 1 : -1), 240);
+      deckAdvancing = true;
+      window.clearTimeout(deckAnimationTimer);
+      const direction = dx < 0 ? 1 : -1;
+      deckAnimationTimer = window.setTimeout(() => {
+        deckIndex = (deckIndex + direction + visiblePlants.length) % visiblePlants.length;
+        deckAdvancing = false;
+        renderDeck();
+      }, 250);
       window.setTimeout(() => { suppressSwipeClick = false; }, 250);
     } else {
       card.classList.remove('is-dragging');
@@ -361,36 +340,45 @@ if (grid && swipeStack) {
   }, true);
 }
 
-const detail = document.querySelector('[data-plant]');
+const detail = document.querySelector('[data-plant-page]');
 function renderPlantDetail() {
   if (!detail) return;
-  const plant = plants.find(item => item.slug === detail.dataset.plant);
+  // The slug in each card link selects one plant from the shared detail-page template.
+  const slug = new URLSearchParams(window.location.search).get('plant');
+  const plant = plants.find(item => item.slug === slug);
   if (!plant) {
     document.title = `${text('notFoundTitle')} — Seed & Soil`;
-    detail.innerHTML = `<div class="not-found"><h1>${text('notFoundTitle')}</h1><p>${text('notFoundDescription')}</p><a class="button button-dark" href="../../">${text('backToCollection')}</a></div>`;
+    detail.innerHTML = `<div class="not-found"><h1>${text('notFoundTitle')}</h1><p>${text('notFoundDescription')}</p><a class="button button-dark" href="../">${text('backToCollection')}</a></div>`;
     return;
   }
 
   const localized = plantText(plant);
-  const info = language === 'ar' ? localized.info : plant.info;
-  const category = language === 'ar' ? text(({ flower: 'categoryFlower', herb: 'categoryHerb', houseplant: 'categoryHouseplant' })[plant.category]) : plant.categoryLabel;
-  const season = language === 'ar' ? text(plant.season === 'Summer' ? 'seasonSummer' : plant.season === 'Year-round' ? 'seasonYearRound' : 'seasonWarm') : plant.season;
-  const color = language === 'ar' ? text(({ 'Golden yellow': 'colorYellow', 'Fresh green': 'colorGreen', 'Soft violet': 'colorViolet', 'Deep green': 'colorDeepGreen' })[plant.color]) : plant.color;
   document.title = `${localized.name} — Seed & Soil`;
-  const url = window.location.href;
+  const shareUrl = new URL(window.location.href);
+  shareUrl.searchParams.set('plant', plant.slug);
+  const url = shareUrl.href;
   const firstPhotoNumber = language === 'ar' ? '١' : '1';
+  const groups = informationGroups.map(([field, headingKey]) => {
+    const value = field === 'commonNames' ? localized.name : plant[field];
+    const content = value || text('missingInfo');
+    const otherNames = field === 'commonNames'
+      ? `<small class="info-other-names">${plant.commonNames || text('commonNamesEmpty')}</small>`
+      : '';
+    return `<details class="info-group">
+      <summary><span class="info-heading">${text(headingKey)}${otherNames}</span><span class="info-symbol" aria-hidden="true"></span></summary>
+      <div class="info-panel"><div class="info-body"><p>${content}</p></div></div>
+    </details>`;
+  }).join('');
   detail.innerHTML = `
-    <p class="breadcrumb"><a href="../../">← ${text('allPlants')}</a> <span aria-hidden="true">/</span> ${localized.name}</p>
+    <p class="breadcrumb"><a href="../">← ${text('allPlants')}</a> <span aria-hidden="true">/</span> ${localized.name}</p>
     <section class="detail-hero" aria-labelledby="plant-title">
       <div class="detail-copy">
-        <p class="eyebrow">${category} · ${text('seedNote')}</p>
+        <p class="eyebrow">${text('seedNote')}</p>
         <h1 class="detail-title" id="plant-title">${localized.name}</h1>
-        <p class="detail-latin">${plant.latin}</p>
-        <p class="detail-description">${localized.description}</p>
-        <div class="detail-tags"><span class="detail-tag">${season}</span><span class="detail-tag">${color}</span></div>
+        <p class="detail-description">${text('missingInfo')}</p>
       </div>
       <div>
-        <figure class="detail-visual"><img id="gallery-image" src="${photoUrl(plant.gallery[0], 1100)}" alt="${localized.name}، ${text('photo')} ${firstPhotoNumber} ${language === 'ar' ? 'من' : 'of'} ${plant.gallery.length}"><figcaption class="gallery-caption">${localized.name} · ${text('photo')} ${firstPhotoNumber}</figcaption></figure>
+        <figure class="detail-visual"><img id="gallery-image" src="${photoUrl(plant.gallery[0], 1100)}" alt="${text('samplePhotos')}"><figcaption class="gallery-caption">${text('samplePhotos')}</figcaption></figure>
         <div class="gallery-controls" aria-label="${text('photoGallery')}">
           <button type="button" class="gallery-button" id="gallery-prev" aria-label="${text('previousPhoto')}">←</button>
           <span class="gallery-count" id="gallery-count" aria-live="polite">${language === 'ar' ? '١' : '1'} / ${language === 'ar' ? plant.gallery.length.toLocaleString('ar') : plant.gallery.length}</span>
@@ -400,7 +388,7 @@ function renderPlantDetail() {
     </section>
     <section class="detail-content" aria-labelledby="info-title">
       <div><h2 id="info-title">${text('aboutPlant')}</h2>
-        <div class="info-list">${info.map((item, index) => `<details class="info-group"${index === 0 ? ' open' : ''}><summary>${item[0]}</summary><div class="info-body"><p>${item[1]}</p></div></details>`).join('')}</div>
+        <div class="info-list">${groups}</div>
       </div>
       <aside class="qr-card" aria-labelledby="qr-title">
         <h3 id="qr-title">${text('qrTitle')}</h3><p>${text('qrDescription')}</p>
@@ -411,7 +399,7 @@ function renderPlantDetail() {
         <p class="qr-credit">${text('qrCredit')}</p>
       </aside>
     </section>
-    <section class="more-plants"><h2>${text('morePlants')}</h2><a class="more-link" href="../../">← ${text('backToCollection')}</a></section>`;
+    <section class="more-plants"><h2>${text('morePlants')}</h2><a class="more-link" href="../">← ${text('backToCollection')}</a></section>`;
 
   let photoIndex = 0;
   const galleryImage = detail.querySelector('#gallery-image');
@@ -420,8 +408,8 @@ function renderPlantDetail() {
     photoIndex = (nextIndex + plant.gallery.length) % plant.gallery.length;
     const digits = language === 'ar' ? (photoIndex + 1).toLocaleString('ar') : photoIndex + 1;
     galleryImage.src = photoUrl(plant.gallery[photoIndex], 1100);
-    galleryImage.alt = `${localized.name}، ${text('photo')} ${digits} ${language === 'ar' ? 'من' : 'of'} ${plant.gallery.length}`;
-    detail.querySelector('.gallery-caption').textContent = `${localized.name} · ${text('photo')} ${digits}`;
+    galleryImage.alt = text('samplePhotos');
+    detail.querySelector('.gallery-caption').textContent = text('samplePhotos');
     galleryCount.textContent = `${digits} / ${language === 'ar' ? plant.gallery.length.toLocaleString('ar') : plant.gallery.length}`;
   }
   detail.querySelector('#gallery-prev').addEventListener('click', () => showPhoto(photoIndex - 1));
@@ -435,6 +423,41 @@ function renderPlantDetail() {
       detail.querySelector('#page-url').select();
       status.textContent = text('copyManually');
     }
+  });
+
+  // Keep the native details/summary controls for keyboard and screen-reader access, and animate their panels.
+  detail.querySelectorAll('.info-group').forEach(group => {
+    const summary = group.querySelector('summary');
+    const panel = group.querySelector('.info-panel');
+    let opening = false;
+    let animationId = 0;
+    summary.addEventListener('click', event => {
+      event.preventDefault();
+      opening = !opening;
+      animationId += 1;
+      const currentAnimationId = animationId;
+      const startHeight = panel.getBoundingClientRect().height;
+      if (panel.getAnimations) panel.getAnimations().forEach(animation => animation.cancel());
+      if (opening) group.open = true;
+      panel.style.overflow = 'hidden';
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        group.open = opening;
+        panel.style.height = '';
+        panel.style.overflow = '';
+        return;
+      }
+      const endHeight = opening ? panel.scrollHeight : 0;
+      const animation = panel.animate(
+        [{ height: `${startHeight}px`, opacity: opening ? 0 : 1 }, { height: `${endHeight}px`, opacity: opening ? 1 : 0 }],
+        { duration: 260, easing: 'ease-in-out' }
+      );
+      animation.onfinish = () => {
+        if (animationId !== currentAnimationId) return;
+        group.open = opening;
+        panel.style.height = '';
+        panel.style.overflow = '';
+      };
+    });
   });
 }
 

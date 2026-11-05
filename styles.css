@@ -31,3 +31,16 @@
 :root[dir="rtl"] .swipe-card-content{text-align:right}:root[dir="rtl"] .swipe-card-latin{direction:ltr;text-align:right}
 @media(max-width:600px){.swipe-section{padding:20px 0 36px;margin-bottom:28px}.swipe-heading{margin-bottom:15px}.swipe-heading h2{font-size:25px}.swipe-stage{width:min(100%,330px);height:min(112vw,440px);min-height:350px}.swipe-card{border-radius:18px}.swipe-card-content{padding:22px 20px}.swipe-card-title{font-size:30px}.swipe-controls{margin-top:22px}.catalog-heading{margin-bottom:15px}}
 @media(prefers-reduced-motion:reduce){.swipe-card,.swipe-card.is-active.is-swiping-left,.swipe-card.is-active.is-swiping-right{transition:none!important}}
+
+/* Fan a few cards behind the current plant, and let the current card swipe away. */
+.swipe-card.is-underlay{transform:translate(var(--stack-x)) translateY(calc(var(--stack-depth)*10px)) rotate(var(--stack-angle)) scale(calc(1 - var(--stack-depth)*.035))}
+.swipe-card.is-active.is-swiping-left{transform:translate(145%,-4%) rotate(20deg);opacity:0}
+.swipe-card.is-active.is-swiping-right{transform:translate(-145%,-4%) rotate(-20deg);opacity:0}
+.swipe-card.is-active.is-swiping-left,.swipe-card.is-active.is-swiping-right{transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .24s ease}
+.info-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px}
+.info-other-names{font:400 11px/1.5 var(--sans);color:var(--muted)}
+.info-panel{overflow:hidden}
+.info-panel .info-body{padding-top:0}
+:root[dir="rtl"] .info-other-names{font-family:'Noto Sans Arabic',Tahoma,sans-serif}
+:root[data-theme="dark"] .swipe-card{box-shadow:0 12px 32px #0006}
+@media(max-width:600px){.swipe-stage{width:min(100%,330px);height:min(112vw,440px);min-height:350px}.info-group summary{font-size:16px}.info-other-names{font-size:10px}}

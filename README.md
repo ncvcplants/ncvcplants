@@ -1,33 +1,35 @@
 # Seed & Soil
 
-A small, no-install plant and seed showcase. The homepage has swipeable plant cards above the complete plant-card list, with search and type filters. Select a card to open its own page with a photo gallery, growing notes, and a QR code.
+A simple, no-install plant showcase. Arabic is the starting language; visitors can switch to English or dark mode. The homepage has animated, swipeable plant cards and a regular card list. Every plant has its own shareable page, photo gallery, seven information groups, and QR code.
 
-The site opens in Arabic and can be switched to English, including a right-to-left Arabic layout. Use the dark-mode button to change the colors. On the homepage, swipe through featured plant cards, then browse the full collection in a regular card list. Select a swipe card or a card in the list to open that plant's page.
+## Preview the website
 
-## See the site
+Open `index.html` in a browser to look around on your computer. Photos and QR images need an internet connection. For QR codes to work for other people, publish the website first and print the QR code from the live plant page.
 
-Open `index.html` in a web browser to preview the collection on your computer. The photos and QR code need an internet connection. A QR code uses the address of the page you opened, so use the code from the live website after publishing—not the preview on your computer.
+## Edit the plants
 
-## Put your plants on the site
+The plant list is near the top of `app.js`, inside the `plants` list. Each entry has a short web address (`slug`), Arabic name, English display name, other common names, and seven fact fields:
 
-The plant list and all the words on the plant pages live in `app.js`. Open that file in GitHub and choose the pencil icon to edit it. Each plant has a name, type, short description, photos, and four information groups. Replace the sample details with your own, then save your change.
+- `commonNames`
+- `scientificName`
+- `family`
+- `botanicalDescription`
+- `geographicDistribution`
+- `ecologyReproduction`
+- `otherUses`
 
-To replace a sample plant, edit its entry in `app.js` and keep its `slug` the same. The `slug` is the short web address for its page; for example, the sunflower page is `plants/sunflower/`. To add a new plant, copy an existing entry and give it a new slug, then copy one of the folders in `plants/` and rename the copy to match. In the copied `index.html`, change the page title and the `data-plant` value to the new slug. If you would rather not do that setup yourself, you can start by replacing the four sample plants without changing their slugs.
+The requested plant names are already listed. Their fact fields are intentionally empty for now, so the page says that information has not been added yet instead of guessing. Add information you have checked, between the quotation marks after a field name. The small comments beside the list and page code explain what those parts do.
 
-Photo IDs in the sample list are from Unsplash. To use your own online photos, replace an `image` or `gallery` value with its full public image URL (one that starts with `https://`). Keep the list of `gallery` photos to show several pictures on the plant page.
+Each card opens a separate address such as `plants/index.html?plant=artaa`. The part after `plant=` matches that plant's `slug`. To add a plant, copy one line in the list, change its slug and names, and give it its own entry. Do not reuse another plant's slug.
 
-## Publish it free with GitHub Pages
+The three displayed photos are general placeholders, not identified photos of these species. To use your own pictures, replace the `image` and `gallery` photo IDs in the plant list with full public image addresses beginning with `https://`. The `gallery` list controls the pictures on the plant's page.
 
-1. Sign in to GitHub and open this repository, `ncvcplants/ncvcplants`. The new site changes must be added to the `main` branch before visitors can see them; if they are still waiting in a proposed change, ask the person helping you to review and merge it first.
-2. Select **Settings**, then **Pages** in the sidebar.
-3. Under **Build and deployment**, choose **Deploy from a branch**. Choose the `main` branch and the `/(root)` folder, then select **Save**.
-4. Wait a minute or two. GitHub will show your website address on the Pages settings screen. It will look like `https://ncvcplants.github.io/ncvcplants/`.
-5. Open that address on your phone to check it. Each plant has its own page, for example `https://ncvcplants.github.io/ncvcplants/plants/sunflower/`.
+To edit the site on GitHub, open the file, select the pencil-shaped **Edit** button, make your change, then use GitHub's **Commit changes** button to save it. If you are new to GitHub, ask someone to help you check the change before publishing it.
 
-If GitHub asks to confirm or publish your changes, follow the on-screen prompts. Changes can take a short time to appear on the live site.
+## Publish with GitHub Pages
 
-## Make QR labels for your seed display
+The changes are kept on a separate branch, so they will not appear on the repository's main page until that branch is reviewed and merged into `main`. Nothing here merges it automatically.
 
-After the site is live, open a plant's page on the website. Its QR code is shown beside the growing notes. Scan it with your phone to check that it opens the right page, then right-click the code on a computer (or press and hold on a phone) to save the image for printing on that seed's label. Each plant's code links directly to its own page, so visitors do not have to search the collection.
+After the changes are on `main`, open the repository's **Settings → Pages** page. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/(root)`, and save. GitHub will show the website address when it is ready. Open a plant page on that live website, scan its QR code with a phone to check it, then save or print the code for the seed display.
 
-You do not need to install anything or know how to program to change plant names and descriptions. If you want to add more plants, ask someone to help with the one-time folder-copy step above.
+Each QR code contains that plant's own page address, so it remains easy to label and share. The QR image is created by an online QR service and needs an internet connection.
