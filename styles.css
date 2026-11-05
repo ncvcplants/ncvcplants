@@ -32,11 +32,15 @@
 @media(max-width:600px){.swipe-section{padding:20px 0 36px;margin-bottom:28px}.swipe-heading{margin-bottom:15px}.swipe-heading h2{font-size:25px}.swipe-stage{width:min(100%,330px);height:min(112vw,440px);min-height:350px}.swipe-card{border-radius:18px}.swipe-card-content{padding:22px 20px}.swipe-card-title{font-size:30px}.swipe-controls{margin-top:22px}.catalog-heading{margin-bottom:15px}}
 @media(prefers-reduced-motion:reduce){.swipe-card,.swipe-card.is-active.is-swiping-left,.swipe-card.is-active.is-swiping-right{transition:none!important}}
 
-/* Fan a few cards behind the current plant, and let the current card swipe away. */
-.swipe-card.is-underlay{transform:translate(var(--stack-x)) translateY(calc(var(--stack-depth)*10px)) rotate(var(--stack-angle)) scale(calc(1 - var(--stack-depth)*.035))}
-.swipe-card.is-active.is-swiping-left{transform:translate(145%,-4%) rotate(20deg);opacity:0}
-.swipe-card.is-active.is-swiping-right{transform:translate(-145%,-4%) rotate(-20deg);opacity:0}
-.swipe-card.is-active.is-swiping-left,.swipe-card.is-active.is-swiping-right{transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .24s ease}
+/* Stack cards in a neat pile and let the top card slide away without rotating. */
+.swipe-card.is-underlay{transform:translate(calc(var(--stack-depth)*-15px),calc(var(--stack-depth)*-12px)) scale(calc(1 - var(--stack-depth)*.035))}
+.swipe-card.is-active{transform:translateX(var(--swipe-x,0))}
+.swipe-card.is-active.is-swiping-left{transform:translateX(-125%);opacity:0}
+.swipe-card.is-active.is-swiping-right{transform:translateX(125%);opacity:0}
+.swipe-card.is-active.is-swiping-left,.swipe-card.is-active.is-swiping-right{transition:transform .3s ease,opacity .26s ease}
+.swipe-card.is-active.is-entering{animation:slide-card-into-place .24s ease-out both}
+@keyframes slide-card-into-place{from{transform:translate(var(--entry-offset),-12px) scale(.96);opacity:.72}to{transform:translate(0,0) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.swipe-card.is-active.is-entering{animation:none}}
 .info-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px}
 .info-other-names{font:400 11px/1.5 var(--sans);color:var(--muted)}
 .info-panel{overflow:hidden}

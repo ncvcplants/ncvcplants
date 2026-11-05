@@ -266,10 +266,12 @@ function renderDeck() {
         <span class="swipe-card-title">${localized.name}</span>
         <span class="swipe-card-meta">${text('seedNote')}</span>
       </span>`;
+    const entryClass = isActive && deckEntryOffset ? ' is-entering' : '';
     cards.push(isActive
-      ? `<a class="swipe-card is-active" href="${link}" aria-label="${text('viewPlant')} ${localized.name}" data-swipe-card>${content}</a>`
-      : `<div class="swipe-card is-underlay" aria-hidden="true" style="--stack-depth:${depth};--stack-x:${depth * (depth % 2 ? 10 : -10)}px;--stack-angle:${depth * (depth % 2 ? 3 : -3)}deg">${content}</div>`);
+      ? `<a class="swipe-card is-active${entryClass}" href="${link}" aria-label="${text('viewPlant')} ${localized.name}" data-swipe-card style="--entry-offset:${deckEntryOffset}px">${content}</a>`
+      : `<div class="swipe-card is-underlay" aria-hidden="true" style="--stack-depth:${depth}">${content}</div>`);
   }
+  deckEntryOffset = 0;
   swipeStack.innerHTML = cards.join('');
 }
 
@@ -277,6 +279,7 @@ let deckAnimationTimer;
 let deckAdvancing = false;
 let swipeQueue = [];
 let pointerStart = null;
+let deckEntryOffset = 0;
 
 function finishDeckSwipe() {
   const direction = swipeQueue.shift();
@@ -289,6 +292,7 @@ function finishDeckSwipe() {
   const animationDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 270;
   deckAnimationTimer = window.setTimeout(() => {
     deckIndex = (deckIndex + direction + visiblePlants.length) % visiblePlants.length;
+    deckEntryOffset = direction === 1 ? -18 : 18;
     deckAdvancing = false;
     renderDeck();
     if (pointerStart) {
@@ -297,7 +301,6 @@ function finishDeckSwipe() {
       if (nextCard && remainder) {
         nextCard.classList.add('is-dragging');
         nextCard.style.setProperty('--swipe-x', `${remainder}px`);
-        nextCard.style.setProperty('--swipe-rotation', `${remainder * 0.055}deg`);
       }
     }
     if (swipeQueue.length) finishDeckSwipe();
@@ -330,7 +333,6 @@ function updateDraggedCard() {
   if (!card) return;
   card.classList.toggle('is-dragging', pointerStart.dragged);
   card.style.setProperty('--swipe-x', `${remainder}px`);
-  card.style.setProperty('--swipe-rotation', `${remainder * 0.055}deg`);
 }
 
 /*
