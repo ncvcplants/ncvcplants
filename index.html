@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,12 +33,12 @@
           <button class="filter-chip" type="button" data-filter="houseplant" aria-pressed="false" data-i18n="houseplantFilter">Houseplants</button>
         </div>
       </div>
-      <div class="view-controls" role="group" aria-label="Plant collection view" data-i18n-aria="viewLabel">
-        <button class="view-button is-active" type="button" data-view="cards" aria-pressed="true" data-i18n="cardsView">Cards</button>
-        <button class="view-button" type="button" data-view="wheel" aria-pressed="false" data-i18n="wheelView">Plant wheel</button>
+      <div class="wheel-controls" role="group" aria-label="Turn the plant wheel" data-i18n-aria="wheelControls">
+        <button class="wheel-button" type="button" id="wheel-prev" aria-label="Previous plant" data-i18n-aria="previousPlant">←</button>
+        <span class="wheel-position" id="wheel-position" aria-live="polite"></span>
+        <button class="wheel-button" type="button" id="wheel-next" aria-label="Next plant" data-i18n-aria="nextPlant">→</button>
       </div>
-      <div class="wheel-hub" aria-hidden="true" data-i18n="wheelHub">SEED LIBRARY</div>
-      <div class="plant-grid" id="plant-grid" aria-live="polite"></div>
+      <div class="plant-grid plant-wheel" id="plant-grid" role="region" aria-label="Interactive plant wheel" data-i18n-aria="wheelLabel" tabindex="0"></div>
       <p class="empty-state" id="empty-state" hidden data-i18n="emptyState">No plants found. Try another search.</p>
     </section>
   </main>

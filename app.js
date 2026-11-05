@@ -2,46 +2,46 @@
 const plants = [
   {
     slug: 'sunflower', name: 'Sunflower', latin: 'Helianthus annuus', category: 'flower', categoryLabel: 'Flower', color: 'Golden yellow', season: 'Summer',
-    image: 'photo-1597848212624-e6e3b0f1f0fa', imagePosition: 'center center', description: 'A cheerful, sun-chasing bloom that can grow taller than you. Sunflowers bring a little summer wherever they land.',
+    image: 'photo-1597848212624-e6e3b0f1f0fa', imagePosition: 'center center', description: 'A tall annual flower with bright yellow petals and edible seeds.',
     gallery: ['photo-1597848212624-e6e3b0f1f0fa', 'photo-1470252649378-9c29740c9fa8', 'photo-1500382017468-9049fed747ef'],
     info: [
       ['About this plant', 'Sunflowers are annuals native to North America. Their familiar flower head is made up of many tiny flowers, and young plants turn to follow the sun.'],
       ['Sowing your seeds', 'Sow outdoors after the last frost, about 2.5 cm (1 in) deep. Give each plant room to grow, and choose a sunny spot protected from strong wind.'],
       ['Light & water', 'Full sun is best: aim for at least 6–8 hours a day. Water deeply while the plant is young; established plants are fairly drought tolerant.'],
-      ['Little notes', 'Flowers attract bees and birds. Save a few mature seed heads to dry for next year or leave them out as a snack for wildlife.']
+      ['Additional notes', 'Flowers attract bees and birds. Save a few mature seed heads to dry for next year or leave them out as a snack for wildlife.']
     ]
   },
   {
     slug: 'sweet-basil', name: 'Sweet Basil', latin: 'Ocimum basilicum', category: 'herb', categoryLabel: 'Herb', color: 'Fresh green', season: 'Warm months',
-    image: 'photo-1618164436241-4473940d1f5c', imagePosition: 'center center', description: 'A fragrant kitchen favorite with soft green leaves and a sunny disposition. Pinch a little for pasta, pesto, or a windowsill.',
+    image: 'photo-1618164436241-4473940d1f5c', imagePosition: 'center center', description: 'A culinary herb with aromatic leaves commonly used fresh or dried.',
     gallery: ['photo-1618164436241-4473940d1f5c', 'photo-1618375569909-3c8616cf7733', 'photo-1466692476868-aef1dfb1e735'],
     info: [
       ['About this plant', 'Sweet basil is a tender, leafy annual herb loved for its aromatic leaves. Warmth, regular picking, and a bright windowsill help it flourish.'],
       ['Sowing your seeds', 'Start indoors in a warm place, barely covering the seeds. Move seedlings outside only after nights are reliably warm, or keep them in a sunny pot.'],
       ['Light & water', 'Give basil 6 or more hours of sunlight and keep the soil evenly moist, not soggy. Good drainage helps keep roots healthy.'],
-      ['Little notes', 'Pinch off the tips above a pair of leaves to encourage bushier growth. Remove flower buds to keep the leaves coming.']
+      ['Additional notes', 'Pinch off the tips above a pair of leaves to encourage bushier growth. Remove flower buds to keep the leaves coming.']
     ]
   },
   {
     slug: 'lavender', name: 'Lavender', latin: 'Lavandula angustifolia', category: 'flower', categoryLabel: 'Flower', color: 'Soft violet', season: 'Summer',
-    image: 'photo-1470252649378-9c29740c9fa8', imagePosition: 'center center', description: 'A calming, fragrant favorite for sunny spots. Its purple flower spikes are loved by pollinators and make a lovely dried bouquet.',
+    image: 'photo-1470252649378-9c29740c9fa8', imagePosition: 'center center', description: 'A fragrant perennial shrub with purple flower spikes that attract pollinators.',
     gallery: ['photo-1470252649378-9c29740c9fa8', 'photo-1499002238440-d264edd596ec', 'photo-1497250681960-ef046c08a56e'],
     info: [
       ['About this plant', 'English lavender is a woody perennial known for its scented foliage and purple flower spikes. Once established, it prefers life on the drier side.'],
       ['Sowing your seeds', 'Lavender seeds can be slow to sprout. Sow on the surface of a free-draining seed mix, keep lightly moist, and be patient; germination may take a few weeks.'],
       ['Light & water', 'Choose full sun and well-drained soil. Water young plants as they establish, then let the soil dry between waterings.'],
-      ['Little notes', 'Trim lightly after flowering to keep a neat shape, but avoid cutting into old woody stems. The flowers are wonderful for pollinators.']
+      ['Additional notes', 'Trim lightly after flowering to keep a neat shape, but avoid cutting into old woody stems.']
     ]
   },
   {
     slug: 'monstera', name: 'Monstera', latin: 'Monstera deliciosa', category: 'houseplant', categoryLabel: 'Houseplant', color: 'Deep green', season: 'Year-round',
-    image: 'photo-1501004318641-b39e6451bec6', imagePosition: 'center center', description: 'A bold, easygoing tropical houseplant with big, characterful leaves. Give it a bright corner and something to climb.',
+    image: 'photo-1501004318641-b39e6451bec6', imagePosition: 'center center', description: 'A tropical climbing houseplant with large, split leaves. It grows best in bright, indirect light.',
     gallery: ['photo-1501004318641-b39e6451bec6', 'photo-1485955903447-4fcbf3f13fd0', 'photo-1497250681960-ef046c08a56e'],
     info: [
       ['About this plant', 'Monstera deliciosa is a tropical climbing plant. In bright conditions, mature leaves develop natural splits and holes that give the plant its iconic look.'],
       ['Starting from seed', 'Fresh seeds are best. Sow soon after collecting in a warm, moist seed mix; seeds sold dried may not germinate. Many people grow monstera from cuttings instead.'],
       ['Light & water', 'Place in bright, indirect light. Water when the top few centimetres of soil feel dry, and let excess water drain away.'],
-      ['Little notes', 'A moss pole gives this climber support as it grows. Wipe leaves occasionally to keep them dust-free. Keep away from curious pets.']
+      ['Additional notes', 'A moss pole gives this climber support as it grows. Wipe leaves occasionally to keep them dust-free. Keep away from pets.']
     ]
   }
 ];
@@ -50,10 +50,11 @@ const translations = {
   en: {
     collectionTitle: 'Plant collection', wheelHub: 'SEED LIBRARY', siteSettings: 'Site settings', searchLabel: 'Search plants', searchPlaceholder: 'Search plants',
     filterLabel: 'Filter plants by type', allFilter: 'All', flowerFilter: 'Flowers', herbFilter: 'Herbs',
-    houseplantFilter: 'Houseplants', viewLabel: 'Plant collection view', cardsView: 'Cards', wheelView: 'Plant wheel',
+    houseplantFilter: 'Houseplants', wheelControls: 'Turn the plant wheel', wheelLabel: 'Interactive plant wheel',
+    previousPlant: 'Previous plant', nextPlant: 'Next plant', wheelPosition: 'Plant {current} of {total}: {name}',
     emptyState: 'No plants found. Try another search.', backToTop: 'Back to top ↑', darkMode: 'Dark mode',
     lightMode: 'Light mode', switchLanguage: 'العربية', plantCountOne: 'plant', plantCountMany: 'plants',
-    inCollection: 'in the collection', viewPlant: 'View', learnAbout: 'Learn about', seed: 'SEED',
+    inCollection: 'in the collection', viewPlant: 'View', seed: 'SEED',
     allPlants: 'All plants', seedNote: 'plant profile', photo: 'Photo', previousPhoto: 'Previous photo',
     nextPhoto: 'Next photo', photoGallery: 'Plant photo gallery', aboutPlant: 'About the plant',
     qrTitle: 'Plant QR code', qrDescription: 'Scan to open this plant page.', openPage: 'Open this page',
@@ -68,10 +69,11 @@ const translations = {
   ar: {
     collectionTitle: 'مجموعة النباتات', wheelHub: 'مجموعة النباتات', siteSettings: 'إعدادات الموقع', searchLabel: 'ابحث عن نبات', searchPlaceholder: 'ابحث عن نبات',
     filterLabel: 'تصفية النباتات حسب النوع', allFilter: 'الكل', flowerFilter: 'أزهار', herbFilter: 'أعشاب',
-    houseplantFilter: 'نباتات منزلية', viewLabel: 'طريقة عرض النباتات', cardsView: 'بطاقات', wheelView: 'عجلة النباتات',
+    houseplantFilter: 'نباتات منزلية', wheelControls: 'تدوير عجلة النباتات', wheelLabel: 'عجلة تفاعلية للنباتات',
+    previousPlant: 'النبات السابق', nextPlant: 'النبات التالي', wheelPosition: 'النبات {current} من {total}: {name}',
     emptyState: 'لم يتم العثور على نباتات. جرّب بحثًا آخر.', backToTop: 'العودة إلى الأعلى ↑', darkMode: 'الوضع الداكن',
     lightMode: 'الوضع الفاتح', switchLanguage: 'English', plantCountOne: 'نبات', plantCountMany: 'نباتات',
-    inCollection: 'في المجموعة', viewPlant: 'عرض', learnAbout: 'معلومات عن', seed: 'بذرة',
+    inCollection: 'في المجموعة', viewPlant: 'عرض', seed: 'بذرة',
     allPlants: 'كل النباتات', seedNote: 'معلومات النبات', photo: 'صورة', previousPhoto: 'الصورة السابقة',
     nextPhoto: 'الصورة التالية', photoGallery: 'معرض صور النبات', aboutPlant: 'عن النبات',
     qrTitle: 'رمز QR للنبات', qrDescription: 'امسح الرمز لفتح صفحة النبات.', openPage: 'فتح الصفحة',
@@ -84,7 +86,7 @@ const translations = {
     colorViolet: 'بنفسجي فاتح', colorDeepGreen: 'أخضر داكن',
     plants: {
       sunflower: {
-        name: 'عبّاد الشمس', description: 'زهرة مشرقة تتبع الشمس، وقد تنمو لتصبح أطول منك. تضيف أزهار عباد الشمس لمسة صيفية إلى الحديقة.',
+        name: 'عبّاد الشمس', description: 'نبات حولي طويل بأزهار صفراء زاهية وبذور صالحة للأكل.',
         info: [
           ['عن النبات', 'عبّاد الشمس نبات حولي موطنه الأصلي أمريكا الشمالية. يتكوّن رأس الزهرة من أزهار صغيرة كثيرة، وتتبع النباتات الفتية حركة الشمس.'],
           ['زراعة البذور', 'ازرع البذور في الخارج بعد انتهاء الصقيع، على عمق نحو ٢٫٥ سم. اترك مساحة كافية لكل نبتة واختر مكانًا مشمسًا محميًا من الرياح القوية.'],
@@ -93,7 +95,7 @@ const translations = {
         ]
       },
       'sweet-basil': {
-        name: 'الريحان الحلو', description: 'عشبة عطرية بأوراق خضراء طرية، تناسب المطبخ ونافذة مشمسة. أضف أوراقها إلى المعكرونة أو البيستو.',
+        name: 'الريحان الحلو', description: 'عشبة تستخدم في الطهي، ذات أوراق عطرية تستعمل طازجة أو مجففة.',
         info: [
           ['عن النبات', 'الريحان الحلو عشبة حولية محبة للدفء، تشتهر بأوراقها العطرية. يساعده الدفء والقطف المنتظم والضوء الساطع على النمو.'],
           ['زراعة البذور', 'ابدأ بزراعته داخل المنزل في مكان دافئ، وغطِّ البذور بطبقة خفيفة من التربة. انقله للخارج بعد اعتدال الليالي أو أبقه في أصيص مشمس.'],
@@ -102,7 +104,7 @@ const translations = {
         ]
       },
       lavender: {
-        name: 'الخُزامى', description: 'نبات عطري يفضل الأماكن المشمسة. تجذب أزهاره البنفسجية الملقحات وتناسب باقات الزهور المجففة.',
+        name: 'الخُزامى', description: 'شجيرة معمرة عطرية ذات أزهار بنفسجية تجذب الملقحات.',
         info: [
           ['عن النبات', 'الخُزامى الإنجليزية نبات معمر خشبي، تشتهر أوراقه وأزهاره البنفسجية برائحتها. يفضل التربة الأقل رطوبة بعد استقراره.'],
           ['زراعة البذور', 'قد يتأخر إنبات بذور الخُزامى. ضعها على سطح تربة جيدة التصريف، وحافظ على رطوبتها الخفيفة؛ فقد يستغرق الإنبات بضعة أسابيع.'],
@@ -111,7 +113,7 @@ const translations = {
         ]
       },
       monstera: {
-        name: 'مونستيرا', description: 'نبات استوائي منزلي بأوراق كبيرة مميزة. ضعه في مكان مضيء بعيدًا عن الشمس المباشرة، ووفر له دعامة للتسلق.',
+        name: 'مونستيرا', description: 'نبات منزلي استوائي متسلق بأوراق كبيرة مشققة. يفضل الضوء الساطع غير المباشر.',
         info: [
           ['عن النبات', 'مونستيرا دليسيوزا نبات متسلق استوائي. تظهر الشقوق والفتحات الطبيعية على أوراقه الناضجة عند نموه في ضوء ساطع.'],
           ['الزراعة من البذور', 'استخدم البذور الطازجة وازرعها سريعًا في تربة دافئة ورطبة؛ فقد لا تنبت البذور المجففة. يزرع كثيرون المونستيرا من العقل بدلًا من البذور.'],
@@ -192,14 +194,22 @@ document.querySelectorAll('[data-theme-button]').forEach(button => button.addEve
 
 const grid = document.querySelector('#plant-grid');
 let selectedFilter = 'all';
-let selectedView = 'cards';
+let wheelOffset = 0;
+let visiblePlants = [];
+function updateWheelRadius() {
+  if (!grid) return;
+  const widthRatio = window.matchMedia('(max-width: 600px)').matches ? 0.26 : 0.32;
+  const radius = Math.min(grid.clientWidth * widthRatio, 245);
+  grid.style.setProperty('--wheel-radius', visiblePlants.length < 2 ? '0px' : `${-radius}px`);
+}
+
 function renderPlants() {
   if (!grid) return;
   const search = document.querySelector('#plant-search');
   const count = document.querySelector('#collection-count');
   const empty = document.querySelector('#empty-state');
   const query = search.value.trim().toLocaleLowerCase(language);
-  const visiblePlants = plants.filter(plant => {
+  visiblePlants = plants.filter(plant => {
     const localized = plantText(plant);
     return (selectedFilter === 'all' || plant.category === selectedFilter) &&
       `${plant.name} ${localized.name} ${plant.latin} ${localized.categoryLabel || text(`category${plant.category[0].toUpperCase()}${plant.category.slice(1)}`)}`.toLocaleLowerCase(language).includes(query);
@@ -210,33 +220,68 @@ function renderPlants() {
     : visiblePlants.length === 1 ? text('plantCountOne') : text('plantCountMany');
   count.textContent = `${formattedCount} ${countNoun} ${text('inCollection')}`;
   empty.hidden = visiblePlants.length > 0;
-  grid.classList.toggle('is-wheel', selectedView === 'wheel' && visiblePlants.length > 0);
-  grid.style.setProperty('--wheel-count', visiblePlants.length);
-  grid.style.setProperty('--wheel-radius', visiblePlants.length < 2 ? '0px' : 'min(24vw, 165px)');
+  grid.classList.toggle('has-plants', visiblePlants.length > 0);
+  document.querySelectorAll('.wheel-button').forEach(button => {
+    button.disabled = visiblePlants.length < 2;
+  });
+  if (visiblePlants.length) wheelOffset %= visiblePlants.length;
+  updateWheelRadius();
+  grid.dataset.wheelLabel = text('wheelHub');
+  const wheelPosition = document.querySelector('#wheel-position');
+  if (wheelPosition && visiblePlants.length) {
+    const currentPlant = plantText(visiblePlants[wheelOffset]);
+    const current = language === 'ar' ? (wheelOffset + 1).toLocaleString('ar') : wheelOffset + 1;
+    const total = language === 'ar' ? visiblePlants.length.toLocaleString('ar') : visiblePlants.length;
+    wheelPosition.textContent = text('wheelPosition')
+      .replace('{current}', current)
+      .replace('{total}', total)
+      .replace('{name}', currentPlant.name);
+  } else if (wheelPosition) {
+    wheelPosition.textContent = text('emptyState');
+  }
   grid.innerHTML = visiblePlants.map((plant, index) => {
     const localized = plantText(plant);
     const season = language === 'ar' ? text(plant.season === 'Summer' ? 'seasonSummer' : plant.season === 'Year-round' ? 'seasonYearRound' : 'seasonWarm') : plant.season;
     const color = language === 'ar' ? text(({ 'Golden yellow': 'colorYellow', 'Fresh green': 'colorGreen', 'Soft violet': 'colorViolet', 'Deep green': 'colorDeepGreen' })[plant.color]) : plant.color;
     const category = language === 'ar' ? text(({ flower: 'categoryFlower', herb: 'categoryHerb', houseplant: 'categoryHouseplant' })[plant.category]) : plant.categoryLabel;
-    const angle = index * (360 / visiblePlants.length);
+    const angle = visiblePlants.length
+      ? index * (360 / visiblePlants.length) - wheelOffset * (360 / visiblePlants.length)
+      : 0;
     return `
-      <article class="plant-card" style="--wheel-angle:${angle}deg">
-        <a class="card-image-link" href="plants/${plant.slug}/" aria-label="${text('viewPlant')} ${localized.name}">
+      <article class="plant-card" style="--wheel-angle:${angle}deg;--wheel-counter-angle:${-angle}deg">
+        <a class="plant-card-link" href="plants/${plant.slug}/" aria-label="${text('viewPlant')} ${localized.name}">
+        <span class="card-image-link">
           <img class="card-image" src="${photoUrl(plant.image)}" alt="${localized.name}" loading="lazy" style="object-position:${plant.imagePosition}">
           <span class="card-number">${text('seed')} 0${plants.indexOf(plant) + 1}</span>
-        </a>
+        </span>
         <div class="card-content">
           <p class="card-category">${category}</p>
-          <h2 class="card-title"><a href="plants/${plant.slug}/">${localized.name}</a></h2>
+          <h2 class="card-title">${localized.name}</h2>
           <p class="card-latin">${plant.latin}</p>
-          <div class="card-bottom"><span>${season} · ${color}</span><a class="card-link" href="plants/${plant.slug}/" aria-label="${text('learnAbout')} ${localized.name}">↗</a></div>
+          <div class="card-bottom"><span>${season} · ${color}</span><span class="card-link" aria-hidden="true">↗</span></div>
         </div>
+        </a>
       </article>`;
   }).join('');
-  const wheelHub = document.querySelector('.wheel-hub');
-  if (wheelHub) grid.prepend(wheelHub);
+}
+function updateWheelPositions() {
+  if (!grid || !visiblePlants.length) return;
+  const step = 360 / visiblePlants.length;
+  grid.querySelectorAll('.plant-card').forEach((card, index) => {
+    const angle = index * step - wheelOffset * step;
+    card.style.setProperty('--wheel-angle', `${angle}deg`);
+    card.style.setProperty('--wheel-counter-angle', `${-angle}deg`);
+  });
+  const currentPlant = plantText(visiblePlants[wheelOffset]);
+  const current = language === 'ar' ? (wheelOffset + 1).toLocaleString('ar') : wheelOffset + 1;
+  const total = language === 'ar' ? visiblePlants.length.toLocaleString('ar') : visiblePlants.length;
+  document.querySelector('#wheel-position').textContent = text('wheelPosition')
+    .replace('{current}', current)
+    .replace('{total}', total)
+    .replace('{name}', currentPlant.name);
 }
 if (grid) {
+  window.addEventListener('resize', updateWheelRadius);
   document.querySelector('#plant-search').addEventListener('input', renderPlants);
   document.querySelectorAll('.filter-chip').forEach(button => button.addEventListener('click', () => {
     selectedFilter = button.dataset.filter;
@@ -247,15 +292,38 @@ if (grid) {
     });
     renderPlants();
   }));
-  document.querySelectorAll('.view-button').forEach(button => button.addEventListener('click', () => {
-    selectedView = button.dataset.view;
-    document.querySelectorAll('.view-button').forEach(view => {
-      const active = view === button;
-      view.classList.toggle('is-active', active);
-      view.setAttribute('aria-pressed', String(active));
-    });
-    renderPlants();
-  }));
+  function rotateWheel(direction) {
+    if (!visiblePlants.length) return;
+    wheelOffset = (wheelOffset + direction + visiblePlants.length) % visiblePlants.length;
+    updateWheelPositions();
+  }
+  document.querySelector('#wheel-prev').addEventListener('click', () => rotateWheel(-1));
+  document.querySelector('#wheel-next').addEventListener('click', () => rotateWheel(1));
+  grid.addEventListener('keydown', event => {
+    if (event.target.closest('a')) return;
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      rotateWheel(language === 'ar' ? 1 : -1);
+    }
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      rotateWheel(language === 'ar' ? -1 : 1);
+    }
+  });
+  let dragStart = null;
+  grid.addEventListener('pointerdown', event => {
+    if (event.target.closest('a, button')) return;
+    dragStart = event.clientX;
+  });
+  window.addEventListener('pointerup', event => {
+    if (dragStart === null) return;
+    const distance = event.clientX - dragStart;
+    if (Math.abs(distance) > 40) rotateWheel(distance < 0 ? 1 : -1);
+    dragStart = null;
+  });
+  grid.addEventListener('pointercancel', () => {
+    dragStart = null;
+  });
 }
 
 const detail = document.querySelector('[data-plant]');
