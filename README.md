@@ -1,6 +1,6 @@
 # Seed & Soil
 
-A simple, no-install plant showcase. Arabic is the starting language; visitors can switch to English or dark mode. The homepage has animated, swipeable plant cards and a regular card list. Every plant has its own shareable page, photo gallery, seven information groups, and QR code.
+A simple, no-install plant showcase. Arabic is the starting language; visitors can switch to English or dark mode. The homepage has animated, swipeable plant cards and a regular card list. Each plant page shows its common name, scientific name, and family beside the photo, with four collapsible information groups and a QR code.
 
 ## Preview the website
 
@@ -8,19 +8,13 @@ Open `index.html` in a browser to look around on your computer. Photos and QR im
 
 ## Edit the plants
 
-The plant list is near the top of `app.js`, inside the `plants` list. Each entry has a short web address (`slug`), Arabic name, English display name, other common names, and seven fact fields:
+The plant list is near the top of `app.js`. Each entry has a short internal key, Arabic name, and English display name. Botanical names, families, source links, and identification notes are in the `plantTaxonomy` and `botanicalProfiles` objects farther down in the same file.
 
-- `commonNames`
-- `scientificName`
-- `family`
-- `botanicalDescription`
-- `geographicDistribution`
-- `ecologyReproduction`
-- `otherUses`
+The information groups are `botanicalDescription`, `geographicDistribution`, `ecologyReproduction`, and `otherUses`. The scientific name is also used to make each plant's shareable page address, for example `plants/index.html?plant=calligonum-comosum`. Older short addresses still open and are updated to the scientific-name address.
 
-The requested plant names are already listed. Their fact fields are intentionally empty for now, so the page says that information has not been added yet instead of guessing. Add information you have checked, between the quotation marks after a field name. The small comments beside the list and page code explain what those parts do.
+GBIF links identify the taxonomy source; some records include accepted-name notes because scientific names and synonyms can differ between references. A few species identifications need checking against the seed labels, and only the Qassim Flora profiles with matching names have locally sourced descriptions at this time. Other unverified descriptions are left blank rather than guessed. When adding facts, use paraphrased wording and add a source link to the plant's profile.
 
-Each card opens a separate address such as `plants/index.html?plant=artaa`. The part after `plant=` matches that plant's `slug`. To add a plant, copy one line in the list, change its slug and names, and give it its own entry. Do not reuse another plant's slug.
+To add a plant, copy one line in the list, give it a unique internal key and names, then add its scientific name and family to `plantTaxonomy`. Use a matching GBIF record ID for the source link; add any directly verified descriptions and regional source URL to `botanicalProfiles`.
 
 The three displayed photos are general placeholders, not identified photos of these species. To use your own pictures, replace the `image` and `gallery` photo IDs in the plant list with full public image addresses beginning with `https://`. The `gallery` list controls the pictures on the plant's page.
 
