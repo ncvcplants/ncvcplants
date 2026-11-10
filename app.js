@@ -269,7 +269,7 @@ function plantCardDetails(plant) {
 }
 
 function renderPlants() {
-  if (!grid || !swipeStack) return;
+  if (!grid) return;
   window.clearTimeout(deckAnimationTimer);
   deckAdvancing = false;
   swipeQueue = [];
@@ -295,12 +295,7 @@ function renderPlants() {
     : visiblePlants.length === 1 ? text('plantCountOne') : text('plantCountMany');
   count.textContent = `${formattedCount} ${countNoun} ${text('inCollection')}`;
   empty.hidden = visiblePlants.length > 0;
-  swipeSection.hidden = visiblePlants.length === 0;
   grid.hidden = visiblePlants.length === 0;
-  document.querySelectorAll('.swipe-button').forEach(button => {
-    button.disabled = visiblePlants.length < 2;
-  });
-  renderDeck();
   grid.innerHTML = visiblePlants.map(plant => {
     const { localized } = plantCardDetails(plant);
     const link = plantPageHref(plant);
@@ -570,7 +565,7 @@ function renderPlantDetail() {
     const rawValue = plant[field];
     const value = typeof rawValue === 'string' ? rawValue : rawValue?.[language];
     const content = value || text('missingInfo');
-    return `<details class="info-group">
+    return `<details class="info-group"${field === 'botanicalDescription' ? ' open' : ''}>
       <summary><span class="info-heading">${text(headingKey)}</span><span class="info-symbol" aria-hidden="true"></span></summary>
       <div class="info-panel"><div class="info-body"><p>${content}</p></div></div>
     </details>`;
@@ -615,7 +610,7 @@ function renderPlantDetail() {
       </div>
       <aside class="qr-card" aria-labelledby="qr-title">
         <h3 id="qr-title">${text('qrTitle')}</h3><p>${text('qrDescription')}</p>
-        <img class="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&format=png&data=${encodeURIComponent(url)}" alt="${text('qrTitle')} — ${localized.name}">
+        <img class="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&format=png&color=5aaa35&bgcolor=ffffff&qzone=1&data=${encodeURIComponent(url)}" alt="${text('qrTitle')} — ${localized.name}">
         <a class="qr-open" href="${url}">${text('openPage')} ↗</a>
         <label class="sr-only" for="page-url">${text('shareLink')}</label><input id="page-url" class="url-field" readonly value="${url}">
         <button class="copy-button" type="button" id="copy-link">${text('copyLink')}</button><p class="copy-status" id="copy-status" aria-live="polite"></p>

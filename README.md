@@ -1,6 +1,6 @@
 # Seed & Soil
 
-A simple, no-install plant showcase. Arabic is the starting language; visitors can switch to English or dark mode. The homepage has animated, swipeable plant cards and a regular card list. Each plant page shows its common name, scientific name, and family beside the photo, with four collapsible information groups and a QR code.
+A simple, no-install plant showcase. Arabic is the starting language; visitors can switch to English or dark mode. The homepage has a searchable plant-card list. Each plant page shows its common name, scientific name, and family beside the photo, with four collapsible information groups and a green QR code.
 
 ## Preview the website
 
@@ -28,4 +28,4 @@ After the changes are on `main`, open the repository's **Settings → Pages** pa
 
 Each QR code contains that plant's own page address, so it remains easy to label and share. The QR image is created by an online QR service and needs an internet connection.
 
-The center logo files are in `assets/`. The dark-text image is used in light mode, and the white-text image is used in dark mode. The featured deck starts from a different plant when the page loads, then follows the plant list in order; hold and drag to move across several cards.
+The center logo files are in `assets/`. The dark-text image is used in light mode, and the white-text image is used in dark mode.

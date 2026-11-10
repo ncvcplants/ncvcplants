@@ -81,3 +81,20 @@ body,body *{transition:color .22s ease,background-color .22s ease,border-color .
 .swipe-card.is-underlay{transform:translate(calc(var(--stack-depth)*12px),calc(var(--stack-depth)*14px)) rotate(calc(var(--stack-depth)*1.5deg)) scale(calc(1 - var(--stack-depth)*.035))}
 @media(max-width:600px){.topbar{height:80px}.site-logo{width:min(52vw,250px);height:64px}}
 @media(prefers-reduced-motion:reduce){body,body *{transition:none!important}}
+
+/* Keep the logo and settings anchored while the page content changes direction. */
+.topbar{direction:ltr}
+.site-controls{direction:ltr}
+.control-button{text-align:center}
+
+/* Reset the browser's default figure margins so the mobile gallery stays centered in Arabic and English. */
+figure.detail-visual{margin:0 auto}
+@media(max-width:600px){
+  .detail-hero>div:last-child{width:100%}
+  figure.detail-visual{width:100%;margin-inline:auto}
+  .gallery-controls{justify-content:center}
+}
+
+/* Match the supplied green-on-white QR reference. */
+.qr-image{width:180px;height:180px;padding:8px;background:#fff;image-rendering:crisp-edges}
+:root[data-theme="dark"] .qr-image{background:#fff}
