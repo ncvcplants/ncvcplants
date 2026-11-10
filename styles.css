@@ -83,7 +83,7 @@ body,body *{transition:color .22s ease,background-color .22s ease,border-color .
 @media(prefers-reduced-motion:reduce){body,body *{transition:none!important}}
 
 /* Keep the logo and settings anchored while the page content changes direction. */
-.topbar{direction:ltr}
+.topbar{direction:ltr;flex-direction:row-reverse}
 .site-controls{direction:ltr}
 .control-button{text-align:center}
 
