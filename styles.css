@@ -73,8 +73,7 @@
 /* The supplied center marks switch between their dark and white versions with the site theme. */
 .site-logo-link{display:flex;align-items:center;min-width:0;text-decoration:none}
 .topbar{height:108px}
-.site-logo{display:block;width:min(52vw,380px);height:90px;object-fit:contain;object-position:left center}
-:root[dir="rtl"] .site-logo{object-position:right center}
+.site-logo{display:block;width:min(52vw,380px);height:90px;object-fit:contain;object-position:center}
 
 /* Fade the page colors quickly when the visitor changes light/dark mode. */
 body,body *{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .22s ease}
