@@ -10,6 +10,8 @@ Open `index.html` in a browser to look around on your computer. Photos and QR im
 
 The plant list is near the top of `app.js`. Each entry has a short internal key, Arabic name, and English display name. Botanical names, families, source links, and identification notes are in the `plantTaxonomy` and `botanicalProfiles` objects farther down in the same file.
 
+The first 42 plants keep their scientific-name page addresses. Every plant added after them uses a fixed address beginning with `p-43` and continuing in collection order. For example, the 43rd plant opens with `plants/index.html?plant=p-43`.
+
 The information groups are `botanicalDescription`, `geographicDistribution`, `ecologyReproduction`, and `otherUses`. The scientific name is also used to make each plant's shareable page address, for example `plants/index.html?plant=calligonum-comosum`. Older short addresses still open and are updated to the scientific-name address.
 
 GBIF links identify the taxonomy source; some records include accepted-name notes because scientific names and synonyms can differ between references. A few species identifications need checking against the seed labels, and only the Qassim Flora profiles with matching names have locally sourced descriptions at this time. Other unverified descriptions are left blank rather than guessed. When adding facts, use paraphrased wording and add a source link to the plant's profile.

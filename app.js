@@ -13,7 +13,31 @@ const plants = [
   ['shih', 'الشيح', 'Shih'], ['salm', 'السلم', 'Salm'], ['tahmah', 'الطحمة', 'Tahmah'],
   ['arar', 'العرعر', 'Arar'], ['asal', 'الأسل', 'Asal'], ['rabalah', 'الربلة', 'Rabalah'],
   ['raqaah', 'الرقاعة', 'Raqaah'], ['qatif', 'القطف', 'Qatif'], ['sibat', 'السبط', 'Sibat'],
-  ['jada', 'الجعدة', 'Jada'], ['thamaam', 'الثمام', 'Thamaam'], ['lasaf', 'اللصف', 'Lasaf']
+  ['jada', 'الجعدة', 'Jada'], ['thamaam', 'الثمام', 'Thamaam'], ['lasaf', 'اللصف', 'Lasaf'],
+  // Plants from 43 onward keep fixed p-43, p-44, ... subpage addresses.
+  ['p-43', 'الرمث', 'Ramth'], ['p-44', 'العضرس الجرد', 'Gymnocarpos'], ['p-45', 'حلم/الحماط', 'Hilm / Hamat'],
+  ['p-46', 'الرقروق - قصيص', 'Raqrouq - Qasais'], ['p-47', 'الضعة', 'Lasiurus'], ['p-48', 'اليهق', 'Yahaq'],
+  ['p-49', 'الكري', 'Kari'], ['p-50', 'الاقحوان', 'Aaqhawan'], ['p-51', 'العضرس', 'Adras'],
+  ['p-52', 'السواس', 'Suwas'], ['p-53', 'ارطى الربع الخالي', 'Arta Rub al Khali'], ['p-54', 'الحوذان', 'Hawdan'],
+  ['p-55', 'ارطى النقاوي', 'Arta al Naqawi'], ['p-56', 'العوسج', 'Awsaj'], ['p-57', 'العلقا', 'Alqa'],
+  ['p-58', 'العلندا', 'Alinda'], ['p-59', 'اللويزه', 'Luiza'], ['p-60', 'الثندا', 'Thanda'],
+  ['p-61', 'المصع', 'Masaa'], ['p-62', 'الكتاد', 'Kitad'], ['p-63', 'القرضي', 'Qardhi'],
+  ['p-64', 'اللافندر', 'Lavender'], ['p-65', 'النبع', 'Nab'], ['p-66', 'الشبرق', 'Shabraq'],
+  ['p-67', 'العرن', 'Arn'], ['p-68', 'العاذر', 'Adhar'], ['p-69', 'البشام', 'Bisham'],
+  ['p-70', 'السمر راديانيا', 'Samar Radiania'], ['p-71', 'التنضب', 'Tandhub'], ['p-72', 'الزعتر البري', 'Wild Thyme'],
+  ['p-73', 'الرشأ', 'Rasha'], ['p-74', 'المجرئ', 'Majra'], ['p-75', 'الشبرم', 'Shibrim'],
+  ['p-76', 'طلح الضهيان', 'Talh al Dhayyan'], ['p-77', 'العصل', 'Asl'], ['p-78', 'القتاد', 'Qitad'],
+  ['p-79', 'الماجروف', 'Mangrove'], ['p-80', 'الغرز', 'Gharz'], ['p-81', 'الرنف', 'Ranf'],
+  ['p-82', 'القرض', 'Qard'], ['p-83', 'الغرب الحور الفراتي', 'Poplar'], ['p-84', 'الاثب', 'Athab'],
+  ['p-85', 'الطلح السيال', 'Talh Sayal'], ['p-86', 'الضبة', 'Dabba'], ['p-87', 'السرح', 'Sarh'],
+  ['p-88', 'الجميز', 'Ghemiz'], ['p-89', 'المظ', 'Maz'], ['p-90', 'الحاذ', 'Had'],
+  ['p-91', 'السويدا', 'Suayda'], ['p-92', 'الرخامي', 'Rakhami'], ['p-93', 'الشعراء', 'Shaara'],
+  ['p-94', 'القضام', 'Qadam'], ['p-95', 'العرقص', 'Areqas'], ['p-96', 'العجرم', 'Ajram'],
+  ['p-97', 'العراد', 'Arad'], ['p-98', 'الشعران', 'Shaaran'], ['p-99', 'القضقاض', 'Qadqad'],
+  ['p-100', 'السكب', 'Sakab'], ['p-101', 'الحرمل', 'Harmal'], ['p-102', 'الخبيز', 'Khubeiz'],
+  ['p-103', 'الحنباز', 'Hanbaz'], ['p-104', 'القليقلان', 'Qaliqlan'], ['p-105', 'النفل', 'Nafl'],
+  ['p-106', 'الحرجل', 'Harjal'], ['p-107', 'اللبخ العملاق', 'Giant Labakh'], ['p-108', 'السمنه ( السليح )', 'Samnah'],
+  ['p-109', 'الاذخر', 'Adhkhir'], ['p-110', 'النقد', 'Naqd'], ['p-111', 'الجثجاث', 'Juthjath']
 ].map(([slug, name, nameEn], index) => ({
   slug,
   name,
@@ -71,7 +95,77 @@ const plantTaxonomy = {
   sibat: { scientificName: 'Stipagrostis drarii', family: 'Poaceae', gbifId: 5943202, saudiRange: true },
   jada: { scientificName: 'Teucrium polium', family: 'Lamiaceae', gbifId: 3887764 },
   thamaam: { scientificName: 'Panicum turgidum', family: 'Poaceae', gbifId: 4121027, saudiRange: true, taxonomyNote: { ar: 'تستخدم صفحة نباتات القصيم الاسم Pennisetum divisum للاسم المحلي «الثمام»، بينما تذكر قائمتك Panicum turgidum. لم أدمج وصف الصفحة قبل التحقق من التطابق.', en: 'The Qassim flora page uses Pennisetum divisum for this local name, while your list gives Panicum turgidum. Its description is not attributed here until the identification is confirmed.' } },
-  lasaf: { scientificName: 'Capparis cartilaginea', family: 'Capparaceae', gbifId: 5601795, spellingNote: true, saudiRange: true }
+  lasaf: { scientificName: 'Capparis cartilaginea', family: 'Capparaceae', gbifId: 5601795, spellingNote: true, saudiRange: true },
+  // Added plants use p-43 and later as their page address; these names are kept exactly as supplied.
+  'p-43': { scientificName: 'Haloxylon saliconicum' },
+  'p-44': { scientificName: 'Gymnocarpos decander' },
+  'p-45': { scientificName: 'Moltkiopsis ciliata' },
+  'p-46': { scientificName: 'Helanthemum sessiliflorum' },
+  'p-47': { scientificName: 'Lasiurus scindicus' },
+  'p-48': { scientificName: 'Diplotaxis acris' },
+  'p-49': { scientificName: 'Heliotropium digynum' },
+  'p-50': { scientificName: 'Anthemis melampodina' },
+  'p-51': { scientificName: 'Convolvulus oxyphyllus' },
+  'p-52': { scientificName: 'Periploca aphylla' },
+  'p-53': { scientificName: 'Calligonum crinitum' },
+  'p-54': { scientificName: 'Picris cyanocarpa' },
+  'p-55': { scientificName: 'Calligonum tetrapteum' },
+  'p-56': { scientificName: 'Lycium chawii' },
+  'p-57': { scientificName: 'Scrophularia hybericifolia' },
+  'p-58': { scientificName: 'Ephedra alata decne' },
+  'p-59': { scientificName: 'Prnus arabica' },
+  'p-60': { scientificName: 'Cyperaceae' },
+  'p-61': { scientificName: 'Nitraria retusa' },
+  'p-62': { scientificName: 'Acacia mellfera' },
+  'p-63': { scientificName: 'Ochradenus arabicus' },
+  'p-64': { scientificName: 'Lavandula officinalis' },
+  'p-65': { scientificName: 'Grewia tenax' },
+  'p-66': { scientificName: 'Indigofera spinosa' },
+  'p-67': { scientificName: 'Rhus tripartita' },
+  'p-68': { scientificName: 'Artemisia monosperma' },
+  'p-69': { scientificName: 'Commiphora gileadensis' },
+  'p-70': { scientificName: 'Acacia tortilis subsp' },
+  'p-71': { scientificName: 'Capparis decidua' },
+  'p-72': { scientificName: 'Thymus decussatus' },
+  'p-73': { scientificName: 'Convolvulus fatmensis' },
+  'p-74': { scientificName: 'Hypoestes forskalii' },
+  'p-75': { scientificName: 'Zilla spinosa' },
+  'p-76': { scientificName: 'Acacia asak' },
+  'p-77': { scientificName: 'Suaeda monoica' },
+  'p-78': { scientificName: 'Astragalus spinosus' },
+  'p-79': { scientificName: 'Mangrove' },
+  'p-80': { scientificName: 'Cenchrus ciliaris' },
+  'p-81': { scientificName: 'Delonix elata' },
+  'p-82': { scientificName: 'Acacia etbaica' },
+  'p-83': { scientificName: 'Populus euphratica' },
+  'p-84': { scientificName: 'Ficus salicifolia' },
+  'p-85': { scientificName: 'Vachellia johnwoodii' },
+  'p-86': { scientificName: 'Acacia mellifera' },
+  'p-87': { scientificName: 'Maerua crassifolia' },
+  'p-88': { scientificName: 'Ficus sycomorus' },
+  'p-89': { scientificName: 'Anisotes trisulcus' },
+  'p-90': { scientificName: 'Cornulaca monacantha' },
+  'p-91': { scientificName: 'Suaeda vera' },
+  'p-92': { scientificName: 'Convolvulus buschiricus Bornm' },
+  'p-93': { scientificName: 'Agathophora alopecuroides' },
+  'p-94': { scientificName: 'Suaeda fruticosa' },
+  'p-95': { scientificName: 'Rhynchosia pulveruenta stocks' },
+  'p-96': { scientificName: 'Anabasis lachnantha' },
+  'p-97': { scientificName: 'Salsola cyclophylla' },
+  'p-98': { scientificName: 'Anabasis setifera' },
+  'p-99': { scientificName: 'Halothamnus iraqensis' },
+  'p-100': { scientificName: 'Pulicaria arabica' },
+  'p-101': { scientificName: 'Peganum harmala' },
+  'p-102': { scientificName: 'Malva parviflora' },
+  'p-103': { scientificName: 'Malva parviflora' },
+  'p-104': { scientificName: 'Pulicaria undulata' },
+  'p-105': { scientificName: 'Trigonella hamosa' },
+  'p-106': { scientificName: 'Haloxylon salicornicum' },
+  'p-107': { scientificName: 'Mimusops laurifolia' },
+  'p-108': { scientificName: 'Gypsophila capillaris' },
+  'p-109': { scientificName: 'Cymbopogon schoenanthus' },
+  'p-110': { scientificName: 'Anvillea garcinii' },
+  'p-111': { scientificName: 'Teucrium polium' }
 };
 
 // Taxonomy links below identify the source record for each plant; accepted names are noted separately.
@@ -101,6 +195,9 @@ const botanicalProfiles = {
 };
 plants.forEach(plant => {
   Object.assign(plant, plantTaxonomy[plant.slug] || {}, botanicalProfiles[plant.slug] || {});
+  // Existing plants keep their scientific-name page addresses.
+  // Added plants use p-43, p-44, and so on exactly as requested.
+  plant.pageSlug = plant.slug.startsWith('p-') ? plant.slug : null;
   plant.scientificSlug = (plant.scientificName || plant.nameEn)
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -196,7 +293,7 @@ const photoUrl = (id, width = 780) => id.startsWith('http')
   : `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`;
 const text = key => translations[language][key];
 const plantText = plant => ({ name: language === 'ar' ? plant.name : plant.nameEn });
-const plantPageHref = plant => `plants/index.html?plant=${encodeURIComponent(plant.scientificSlug)}`;
+const plantPageHref = plant => `plants/index.html?plant=${encodeURIComponent(plant.pageSlug || plant.scientificSlug)}`;
 
 function applyPreferences() {
   const isArabic = language === 'ar';
@@ -548,7 +645,11 @@ function renderPlantDetail() {
   if (!detail) return;
   // Scientific-name slugs identify pages; old short slugs remain valid for existing QR codes.
   const slug = new URLSearchParams(window.location.search).get('plant');
-  const plant = plants.find(item => item.scientificSlug === slug || item.slug === slug);
+  const plant = plants.find(item =>
+    item.pageSlug === slug ||
+    item.scientificSlug === slug ||
+    item.slug === slug
+  );
   if (!plant) {
     document.title = `${text('notFoundTitle')} — Seed & Soil`;
     detail.innerHTML = `<div class="not-found"><h1>${text('notFoundTitle')}</h1><p>${text('notFoundDescription')}</p><a class="button button-dark" href="../">${text('backToCollection')}</a></div>`;
@@ -558,7 +659,7 @@ function renderPlantDetail() {
   const localized = plantText(plant);
   document.title = `${plant.scientificName} — Seed & Soil`;
   const shareUrl = new URL(window.location.href);
-  shareUrl.searchParams.set('plant', plant.scientificSlug);
+  shareUrl.searchParams.set('plant', plant.pageSlug || plant.scientificSlug);
   if (slug !== plant.scientificSlug) window.history.replaceState(null, '', shareUrl.href);
   const url = shareUrl.href;
   const groups = informationGroups.map(([field, headingKey]) => {
