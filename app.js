@@ -111,7 +111,7 @@ const plantTaxonomy = {
   'p-54': { scientificName: 'Picris cyanocarpa' },
   'p-55': { scientificName: 'Calligonum tetrapteum' },
   'p-56': { scientificName: 'Lycium chawii' },
-  'p-57': { scientificName: 'Scrophularia hybericifolia' },
+  'p-57': { scientificName: 'Scrophulari hybericifolia' },
   'p-58': { scientificName: 'Ephedra alata decne' },
   'p-59': { scientificName: 'Prnus arabica' },
   'p-60': { scientificName: 'Cyperaceae' },
